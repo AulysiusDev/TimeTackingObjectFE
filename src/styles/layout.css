@@ -1,0 +1,24 @@
+.layout__container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.layout__header {
+  padding: 10px;
+  flex-shrink: 0;
+  background-color: var(--secondary-background-color);
+  border-bottom: 1px solid var(--primary-highlighted-color);
+}
+
+.layout__main-cont {
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.layout__footer {
+  padding: 10px;
+  flex-shrink: 0;
+  background-color: var(--grey-background-color);
+}/*# sourceMappingURL=layout.css.map */
