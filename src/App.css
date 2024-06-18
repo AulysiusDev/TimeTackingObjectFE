@@ -4,6 +4,8 @@
   --primary-text-color: #fff;
 }
 body {
+  margin: 0;
+  padding: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: var(--primary-text-color);

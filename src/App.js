@@ -6,7 +6,7 @@ import {
   createRoutesFromElements,
 } from "react-router-dom";
 import Layout from "./components/layout/layout";
-import Timesheets from "./pages/timesheets";
+import Timesheets from "./pages/entries";
 
 const router = createBrowserRouter(
   createRoutesFromElements(

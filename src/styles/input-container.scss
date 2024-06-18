@@ -1,0 +1,14 @@
+@import "./variables.scss";
+
+.input-container__container {
+  @include flex($d: column);
+  align-items: flex-start;
+  gap: 7.5px;
+  width: 100%;
+}
+.input-container__label {
+  font-size: 15px;
+  font-weight: 500;
+  color: var(--primary-text-color);
+  padding-left: 2.5px;
+}
