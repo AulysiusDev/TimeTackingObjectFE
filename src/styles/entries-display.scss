@@ -1,0 +1,5 @@
+@import "./variables.scss";
+
+.entries_display__container {
+  @include flex($d: column);
+}

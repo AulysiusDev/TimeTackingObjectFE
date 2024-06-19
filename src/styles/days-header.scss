@@ -1,0 +1,24 @@
+@import "./variables.scss";
+
+.days-header__container {
+  @include flex($d: column);
+  text-align: center;
+  font-weight: 600;
+  color: var(--primary-text-color);
+  gap: 10px;
+  position: relative;
+}
+.days-header__day {
+  font-size: 17.5px;
+  font-weight: 600;
+}
+.days-header__date {
+  font-size: 20px;
+  font-weight: 500;
+}
+.days-header__icon {
+  position: absolute;
+  top: -40%;
+  right: -12.5%;
+  color: var(--primary-color);
+}

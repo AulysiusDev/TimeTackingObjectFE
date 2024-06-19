@@ -1,0 +1,10 @@
+@import "./variables.scss";
+
+.total-hours__container {
+  @include flex();
+  width: 100%;
+  justify-content: flex-end;
+  margin: 0 85px 0 0;
+  padding: 25px 10px 5px;
+  gap: 50px;
+}

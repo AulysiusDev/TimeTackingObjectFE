@@ -5,10 +5,11 @@ import { ArrowLeft } from "../../img/arrow-left";
 import { ArrowRight } from "../../img/arrow-right";
 import { addMonths, endOfWeek, startOfWeek, subMonths } from "date-fns";
 import { getDaysInMonth } from "date-fns";
-import { useGeneral } from "../../context";
+import { useEntries } from "../../context/entries-context";
+import { formatDate } from "../../utils/helpers";
 
 export const HonestWeekPicker = () => {
-  const { week, setWeek } = useGeneral();
+  const { week, setWeek } = useEntries();
   const [open, setOpen] = useState(false);
   const [date, setDate] = useState(new Date());
 
@@ -20,17 +21,6 @@ export const HonestWeekPicker = () => {
     let leapYear = new Date(new Date().getFullYear(), 1, 29);
     return leapYear.getDate() == 29;
   };
-
-  const convertDate = (date) => {
-    let dt = new Date(date);
-
-    return `${dt.getDate()}.${dt.getMonth() + 1}.${dt.getFullYear()}.`;
-  };
-
-  function formatDate(date) {
-    const options = { day: "2-digit", month: "short", year: "2-digit" };
-    return date.toLocaleDateString("en-GB", options).replace(",", "");
-  }
 
   const handleClick = (e) => {
     let localDate;

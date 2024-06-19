@@ -1,12 +1,12 @@
 import React from "react";
 import "../../styles/week-picker.scss";
 import { HonestWeekPicker } from "./honest-Week-picker";
-import { useGeneral } from "../../context";
+import { useEntries } from "../../context/entries-context";
 import { Button } from "monday-ui-react-core";
 import { addMonths, endOfWeek, startOfWeek, subMonths } from "date-fns";
 
 export default function WeekPicker() {
-  const { week, setWeek } = useGeneral();
+  const { week, setWeek } = useEntries();
 
   function onChange(data) {
     setWeek(data);

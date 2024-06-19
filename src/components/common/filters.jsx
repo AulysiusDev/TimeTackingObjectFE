@@ -16,9 +16,7 @@ export default function Filters() {
             <WeekPicker />
           </InputContainer>
         </section>
-        <section className="filters__side-section">
-          <Button />
-        </section>
+        <section className="filters__side-section"></section>
       </div>
     </section>
   );

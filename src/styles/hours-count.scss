@@ -1,0 +1,15 @@
+@import "./variables.scss";
+
+.hours-count__container {
+  @include flex($d: column);
+  gap: 10px;
+}
+.hours-count__title {
+  font-weight: 600;
+  font-size: 20px;
+  color: var(--primary-color);
+}
+.hours-count__text {
+  font-size: 25px;
+  color: var(--primary-text-color);
+}
