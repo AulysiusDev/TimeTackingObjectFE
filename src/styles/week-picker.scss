@@ -1,0 +1,9 @@
+@import "./variables.scss";
+
+.week-picker__container {
+  @include flex();
+  gap: 15px;
+}
+.week-picker__button {
+  background-color: var(--primary-background-color);
+}

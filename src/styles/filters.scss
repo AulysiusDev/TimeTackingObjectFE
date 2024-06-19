@@ -3,11 +3,14 @@
 .filters__container {
   @include flex($d: column);
   width: 100%;
+  background-color: var(--grey-background-color);
+  margin-top: -10px;
 }
 .filters__wrapper {
   @include flex();
   justify-content: space-between;
   width: 100%;
+  height: 100%;
 }
 .filters__side-section {
   padding: 10px;

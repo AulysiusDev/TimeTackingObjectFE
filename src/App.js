@@ -7,6 +7,7 @@ import {
 } from "react-router-dom";
 import Layout from "./components/layout/layout";
 import Timesheets from "./pages/entries";
+import GeneralContextProvider from "./context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -17,7 +18,11 @@ const router = createBrowserRouter(
 );
 
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <GeneralContextProvider>
+      <RouterProvider router={router} />;
+    </GeneralContextProvider>
+  );
 }
 
 export default App;
