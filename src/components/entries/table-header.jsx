@@ -1,6 +1,7 @@
 import React from "react";
 import { useEntries } from "../../context/entries-context";
 import DaysHeader from "./days-header";
+import TableActions from "./table-actions";
 
 export default function TableHeader() {
   const { datesArr } = useEntries();
@@ -14,7 +15,9 @@ export default function TableHeader() {
             color: "var(--primary-color)",
             backgroundColor: "var(--grey-background-color)",
           }}
-        ></td>
+        >
+          <TableActions />
+        </td>
         {datesArr &&
           datesArr.map((date, i) => {
             return (

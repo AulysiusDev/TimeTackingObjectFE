@@ -6,5 +6,12 @@
   justify-content: flex-end;
   margin: 0 85px 0 0;
   padding: 25px 10px 5px;
-  gap: 50px;
+  gap: 60px;
+}
+.total-hours__hours-cont,
+.total-hours__filters-cont {
+  @include flex();
+}
+.total-hours__hours-cont {
+  gap: 35px;
 }

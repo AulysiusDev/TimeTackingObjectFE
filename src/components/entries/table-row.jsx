@@ -1,6 +1,6 @@
 import React from "react";
 import { useEntries } from "../../context/entries-context";
-import { Divider } from "monday-ui-react-core";
+import { Checkbox, Divider } from "monday-ui-react-core";
 
 export default function TableRow() {
   const { datesArr } = useEntries();
@@ -14,8 +14,23 @@ export default function TableRow() {
           borderBottom: "1px solid var(--grey-background-color)",
         }}
       >
-        <div className="week-table__header-cont">
+        <div className="week-table__header-cont clickable">
+          <Checkbox onChange={(e) => console.log(e.target.checked)} />
           <h1 className="week-table__header">Item 1</h1>
+          <h2 className="week-table__category">
+            <span
+              className="week-table__category-text"
+              style={{ color: "var(--shareable-color)" }}
+            >
+              NB
+            </span>{" "}
+            <span
+              className="week-table__category-text"
+              style={{ color: "var(--warning-color-hover)" }}
+            >
+              B
+            </span>
+          </h2>
         </div>
       </td>
 
@@ -23,7 +38,7 @@ export default function TableRow() {
         datesArr.map((date, i) => {
           return (
             <td className="week-table__header-column" key={date}>
-              <div className="week-table__time-cont">
+              <div className="week-table__time-cont clickable">
                 <p className="week-table__text-time">10h 30m</p>
                 <p className="week-table__text-items">1 Item</p>
               </div>

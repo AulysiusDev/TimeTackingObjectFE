@@ -35,8 +35,23 @@ body {
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  height: 100vh;
 }
+
+/* Utility classes */
+
+.clickable {
+  cursor: pointer;
+  transition: scale 0.2s ease-in-out;
+}
+
+.clickable:hover {
+  transform: scale(1.05);
+}
+.clickable:active {
+  transform: scale(1.01);
+}
+
+/* Preset monday styles */
 :root {
   --motion-productive-short: 70ms;
   --motion-productive-medium: 100ms;

@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/filters.scss";
 import InputContainer from "./input-container";
-import { TextField, Dropdown, Checkbox, Button } from "monday-ui-react-core";
+import { Dropdown } from "monday-ui-react-core";
 import WeekPicker from "./week-picker";
 
 export default function Filters() {
@@ -11,6 +11,9 @@ export default function Filters() {
         <section className="filters__side-section">
           <InputContainer>
             <Dropdown className="input-width" placeholder="Filter by user" />
+          </InputContainer>
+          <InputContainer>
+            <Dropdown className="input-width" placeholder="Filter by board" />
           </InputContainer>
           <InputContainer>
             <WeekPicker />

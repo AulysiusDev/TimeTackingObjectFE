@@ -15,11 +15,31 @@
 // body
 .week-table__header-cont {
   @include flex();
+  gap: 20px;
+  height: 100%;
+  padding: 0 10px;
+  transition: all 0.15s ease-in-out;
+  border-radius: 3px;
+  &:hover {
+    background: var(--ui-background-color);
+  }
 }
 .week-table__header {
   font-weight: 500;
-  font-size: 25px;
+  font-size: 20px;
   margin-left: 20px;
+}
+.week-table__category {
+  margin-left: 20px;
+  font-size: 15px;
+  font-weight: 500;
+  @include flex();
+  gap: 7.5px;
+}
+.week-table__category-text {
+  border: 1px solid var(--ui-background-color);
+  padding: 1.5px 3px;
+  border-radius: 5px;
 }
 .week-table__time-cont {
   @include flex-center($d: column);
@@ -28,6 +48,10 @@
   height: 80%;
   border-radius: 7.5px;
   padding: 2.5px;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    background: var(--ui-background-color);
+  }
 }
 .week-table__text-time {
   font-size: 15px;
@@ -44,4 +68,10 @@
 .week-table__text-total {
   font-weight: 600;
   color: var(--primary-color);
+}
+.week-table__header-actions {
+  @include flex();
+  justify-content: flex-start;
+  width: 100%;
+  padding: 0 30px;
 }

@@ -13,6 +13,7 @@ export default function EntriesContextProvider({ children }) {
     lastDay: endOfWeek(new Date(), { weekStartsOn: 1 }),
   });
   const [datesArr, setDatesArr] = useState([]);
+  const [selectedItems, setSelectedItems] = useState([]);
 
   useEffect(() => {
     setDatesArr(createDatesArray(week.firstDay, week.lastDay));
@@ -25,6 +26,8 @@ export default function EntriesContextProvider({ children }) {
         setWeek,
         datesArr,
         setDatesArr,
+        selectedItems,
+        setSelectedItems,
       }}
     >
       {children}
