@@ -1,4 +1,4 @@
-@import "./variables.scss";
+@import "../variables.scss";
 // head
 .week-table__container {
   @include flex($d: column);

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/week-table.scss";
+import "../../styles/entries/week-table.scss";
 import TableHeader from "./table-header";
 import TableBody from "./table-body";
 

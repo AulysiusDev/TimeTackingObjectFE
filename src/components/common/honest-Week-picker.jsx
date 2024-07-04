@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from "react";
-import "../../styles/honest-week-picker.css";
+import React, { useState } from "react";
+import "../../styles/common/honest-week-picker.css";
 import { v4 } from "uuid";
 import { ArrowLeft } from "../../img/arrow-left";
 import { ArrowRight } from "../../img/arrow-right";
@@ -19,7 +19,7 @@ export const HonestWeekPicker = () => {
 
   const isLeapYear = () => {
     let leapYear = new Date(new Date().getFullYear(), 1, 29);
-    return leapYear.getDate() == 29;
+    return leapYear.getDate() === 29;
   };
 
   const handleClick = (e) => {
@@ -142,7 +142,7 @@ export const HonestWeekPicker = () => {
 
       if (
         lastDayOfMonth.getTime() <= lastDay &&
-        week.firstDay.getMonth() == lastDayOfMonth.getMonth()
+        week.firstDay.getMonth() === lastDayOfMonth.getMonth()
       ) {
         cName = "single-number selected-week";
       }

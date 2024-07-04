@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/input-container.scss";
+import "../../styles/common/input-container.scss";
 
 export default function InputContainer({ children, label }) {
   return (

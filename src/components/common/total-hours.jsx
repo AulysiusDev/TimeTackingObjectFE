@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/total-hours.scss";
+import "../../styles/common/total-hours.scss";
 import HoursCount from "./hours-count";
 import InputContainer from "../common/input-container.jsx";
 import { ButtonGroup } from "monday-ui-react-core";

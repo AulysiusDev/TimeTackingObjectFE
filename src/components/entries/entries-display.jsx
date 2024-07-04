@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/entries-display.scss";
+import "../../styles/entries/entries-display.scss";
 import WeekTable from "./week-table";
 
 export default function EntriesDisplay() {

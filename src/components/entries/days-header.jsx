@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/days-header.scss";
+import "../../styles/entries/days-header.scss";
 import { days } from "../../utils/data";
 import { IconButton } from "monday-ui-react-core";
 import { Add } from "monday-ui-react-core/icons";

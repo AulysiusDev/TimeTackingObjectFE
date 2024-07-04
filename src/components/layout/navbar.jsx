@@ -1,5 +1,5 @@
-import React, { useEffect, useState } from "react";
-import "../../styles/navbar.scss";
+import React from "react";
+import "../../styles/layout/navbar.scss";
 import { Link } from "monday-ui-react-core";
 import Logo from "../../img/timing-logo.png";
 import { navlinks } from "../../utils/data";

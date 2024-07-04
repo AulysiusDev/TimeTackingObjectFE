@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/hours-count.scss";
+import "../../styles/entries/hours-count.scss";
 
 export default function HoursCount({ title, children }) {
   return (

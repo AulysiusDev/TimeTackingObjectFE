@@ -1,0 +1,9 @@
+@import "../variables.scss";
+
+.people-comp__container {
+  @include flex($d: column);
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 85%;
+}

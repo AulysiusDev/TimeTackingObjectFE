@@ -1,0 +1,24 @@
+@import "../variables.scss";
+
+.teams__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 15%;
+  align-items: flex-start;
+  margin-top: 75px;
+}
+.teams__list {
+  list-style: none;
+  width: 150px;
+  margin-top: 20px;
+  & li {
+    margin-top: 30px;
+    font-size: 25px;
+    margin-left: 50px;
+    text-align: left;
+    color: var(--secondary-text-color);
+    transition: color 0.15s ease-in-out;
+    cursor: pointer;
+  }
+}

@@ -3,7 +3,7 @@ import React from "react";
 import { Outlet } from "react-router-dom";
 import Navbar from "./navbar";
 import Footer from "./footer";
-import "../../styles/layout.scss";
+import "../../styles/layout/layout.scss";
 
 export default function Layout() {
   return (

@@ -1,5 +1,5 @@
 import React from "react";
-import "../../styles/filters.scss";
+import "../../styles/common/filters.scss";
 import InputContainer from "./input-container";
 import { Dropdown } from "monday-ui-react-core";
 import WeekPicker from "./week-picker";
