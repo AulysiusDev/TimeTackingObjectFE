@@ -1,0 +1,21 @@
+@import "../variables.scss";
+
+.people-table-body__container {
+}
+.people-table-body__row {
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    background: var(--ui-background-color);
+  }
+}
+.people-table-body__field {
+  padding: 20px 5px 20px 10px;
+  font-size: 20px;
+  &:nth-child(1) {
+    @include flex($d: column);
+    gap: 10px;
+    width: 100%;
+    align-items: flex-start;
+  }
+}

@@ -4,10 +4,14 @@ import HoursCount from "./hours-count";
 import InputContainer from "../common/input-container.jsx";
 import { ButtonGroup } from "monday-ui-react-core";
 import { totalHoursOptions } from "../../utils/data.js";
+import PageTitle from "./page-title.jsx";
 
 export default function TotalHours() {
   return (
     <section className="total-hours__container">
+      <PageTitle styles={{ justifySelf: "flex-start", width: "100%" }}>
+        Time entries
+      </PageTitle>
       <article className="total-hours__filters-cont">
         <InputContainer>
           <ButtonGroup options={totalHoursOptions} fullWidth value={0} />

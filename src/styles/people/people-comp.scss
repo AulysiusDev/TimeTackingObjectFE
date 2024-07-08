@@ -2,8 +2,40 @@
 
 .people-comp__container {
   @include flex($d: column);
-  display: flex;
-  flex-direction: column;
   flex-grow: 1;
   flex-basis: 85%;
+  margin-top: 55px;
+  position: relative;
+}
+.people-comp__table-wrapper {
+  width: 98%;
+  margin-top: 50px;
+}
+.people-comp__field-width {
+  border-left: none;
+  border-right: none;
+  border-top: none;
+  &:nth-child(1) {
+    width: 25%; // User
+  }
+  &:nth-child(2) {
+    width: 20%; // Hours
+  }
+  &:nth-child(3) {
+    width: 20%; // Days
+  }
+  &:nth-child(4) {
+    width: 25%; // Rate
+  }
+  &:nth-child(5) {
+    width: 10%; // Currency
+  }
+  &:nth-child(6) {
+    width: 10%; // Currency
+  }
+}
+.people-comp__button {
+  position: absolute;
+  top: -1%;
+  left: 90%;
 }

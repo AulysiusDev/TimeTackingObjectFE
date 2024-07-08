@@ -7,7 +7,6 @@ import PeopleComp from "../components/people/people-comp";
 export default function People() {
   return (
     <div className="people__container">
-      <article className="people__top-cont"></article>
       <section className="people__content-cont">
         <Teams />
         <Divider

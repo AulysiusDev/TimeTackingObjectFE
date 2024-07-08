@@ -41,14 +41,18 @@ body {
 
 .clickable {
   cursor: pointer;
-  transition: scale 0.2s ease-in-out;
+  transition: scale background-color 0.2s ease-in-out;
 }
-
 .clickable:hover {
   transform: scale(1.05);
 }
 .clickable:active {
   transform: scale(1.01);
+}
+.page-title {
+  font-size: 30px;
+  margin-left: 30px;
+  font-weight: 500;
 }
 
 /* Preset monday styles */
@@ -9032,6 +9036,7 @@ a.components-BreadcrumbsBar-BreadcrumbItem-BreadcrumbContent-BreadcrumbContent-m
 .work-schedule__dropdown {
   min-width: 125px;
   width: 125px;
+  height: unset !important;
 }
 .logged-time__container,
 .logged-time__content-cont {

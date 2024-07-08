@@ -3,8 +3,6 @@
 .filters__container {
   @include flex($d: column);
   width: 100%;
-  background-color: var(--grey-background-color);
-  margin-top: -10px;
 }
 .filters__wrapper {
   @include flex();
@@ -19,4 +17,7 @@
 }
 .filters__date-input {
   height: 100px;
+}
+.users {
+  margin: 10px;
 }

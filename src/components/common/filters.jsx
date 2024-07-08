@@ -10,7 +10,10 @@ export default function Filters() {
       <div className="filters__wrapper">
         <section className="filters__side-section">
           <InputContainer>
-            <Dropdown className="input-width" placeholder="Filter by user" />
+            <Dropdown
+              className="input-width users"
+              placeholder="Filter by user"
+            />
           </InputContainer>
           <InputContainer>
             <Dropdown className="input-width" placeholder="Filter by board" />
