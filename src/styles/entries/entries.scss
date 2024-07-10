@@ -2,4 +2,12 @@
 
 .entries__container {
   @include flex($d: column);
+  width: 100%;
+  gap: 20px;
+}
+.entries__top-cont {
+  @include flex();
+  width: 100%;
+  justify-content: flex-start;
+  margin-bottom: 35px;
 }

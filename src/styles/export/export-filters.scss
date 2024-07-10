@@ -1,0 +1,15 @@
+@import "../variables.scss";
+
+.export-filters__container {
+  @include flex();
+  align-items: flex-start;
+  gap: 30px;
+  margin-top: 20px;
+}
+.export-filters__dropdown {
+  margin: 5px;
+}
+.export-filters__checkbox-cont {
+  @include flex();
+  gap: 20px;
+}
