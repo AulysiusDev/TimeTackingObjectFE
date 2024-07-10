@@ -15,7 +15,6 @@ export default function PeopleContextProvider({ children }) {
 
   useEffect(() => {
     const sortedPeople = sortPeople(teams, peopleList);
-    console.log({ sortedPeople });
     setPeople(sortedPeople);
   }, []);
 

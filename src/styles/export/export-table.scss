@@ -1,0 +1,69 @@
+@import "../variables.scss";
+
+.export-table__container {
+  @include flex($d: column);
+  width: 100%;
+  margin: 50px 0;
+  & > table {
+    width: 90%;
+    margin-left: 30px;
+    border-collapse: collapse;
+    & th {
+      text-transform: capitalize;
+      background: var(--fixed-light-color);
+      border-top: none;
+      min-width: 40px;
+      max-width: 40px;
+      font-weight: 500;
+      font-size: 17.5px;
+      color: var(--primary-color);
+      position: relative;
+      &:first-child {
+        border-left: none;
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+    & td {
+      padding: 20px;
+      &:first-child {
+        border-left: none;
+        position: relative;
+        & > label > div {
+          color: red !important;
+        }
+      }
+      &:last-child {
+        border-right: none;
+      }
+    }
+  }
+}
+
+.export-table__checkbox-cont-top {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -40%;
+  right: 45%;
+}
+.export-table__checkbox-cont {
+  position: absolute;
+  top: 34%;
+  left: -30%;
+  width: 20px;
+  height: 20px;
+}
+
+// .export__filters-cont {
+//   @include flex($d: column);
+// }
+// .export__generated-cont,
+// .export-table__generated-cont {
+//   align-items: flex-start;
+//   gap: 50px;
+// }
+// .export-table__filters-cont {
+//   flex-basis: 20%;
+// }

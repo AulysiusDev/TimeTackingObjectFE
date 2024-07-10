@@ -2,8 +2,8 @@ import React from "react";
 import "../styles/entries/entries.scss";
 import Filters from "../components/common/filters";
 import TotalHours from "../components/common/total-hours";
-import EntriesDisplay from "../components/entries/entries-display";
 import PageTitle from "../components/common/page-title";
+import WeekTable from "../components/entries/week-table";
 
 export default function Entries() {
   return (
@@ -21,7 +21,7 @@ export default function Entries() {
         <Filters />
       </div>
       <TotalHours />
-      <EntriesDisplay />
+      <WeekTable />
     </section>
   );
 }
