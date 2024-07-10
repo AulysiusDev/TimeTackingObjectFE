@@ -10,12 +10,19 @@
   }
 }
 .people-table-body__field {
-  padding: 20px 5px 20px 10px;
+  padding: 20px 10px 20px 10px;
+  height: 60px;
   font-size: 20px;
+  text-align: left;
   &:nth-child(1) {
-    @include flex($d: column);
+    // @include flex($d: column);
     gap: 10px;
-    width: 100%;
-    align-items: flex-start;
+    div {
+      @include flex($d: column);
+      align-items: flex-start;
+      gap: 10px;
+    }
   }
+}
+.people-table-body__user-field {
 }

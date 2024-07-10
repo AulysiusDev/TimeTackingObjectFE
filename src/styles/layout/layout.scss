@@ -9,6 +9,7 @@
   flex-shrink: 0;
   background-color: var(--secondary-background-color);
   border-bottom: 1px solid var(--primary-highlighted-color);
+  position: relative;
 }
 
 .layout__main-cont {
@@ -16,6 +17,7 @@
   flex-grow: 1;
   overflow-y: auto;
   height: 100%;
+  margin-top: 75px;
 }
 
 .layout__footer {

@@ -9,10 +9,6 @@ export default function People() {
     <div className="people__container">
       <section className="people__content-cont">
         <Teams />
-        <Divider
-          direction={Divider.directions.VERTICAL}
-          className="people__divider"
-        />
         <PeopleComp />
       </section>
     </div>

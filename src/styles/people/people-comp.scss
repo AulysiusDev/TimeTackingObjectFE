@@ -4,14 +4,33 @@
   @include flex($d: column);
   flex-grow: 1;
   flex-basis: 85%;
-  margin-top: 55px;
   position: relative;
 }
-.people-comp__table-wrapper {
-  width: 98%;
-  margin-top: 50px;
+.people-comp__top-cont {
+  @include flex($d: column);
+  flex-direction: column;
+  align-items: center;
+  width: 85%;
+  position: fixed;
+  height: 120px;
+  background-color: var(--fixed-light-color);
+  z-index: 998;
+  justify-content: space-between;
+  padding-top: 30px;
+  gap: 20px;
 }
-.people-comp__field-width {
+.people-comp__top-wrapper {
+  @include flex();
+  justify-content: space-between;
+  width: 100%;
+}
+.people-comp__table-wrapper {
+  width: 98.5%;
+  margin-top: 150px;
+  height: 100%;
+}
+.people-comp__body-width,
+.people-comp__head-width {
   border-left: none;
   border-right: none;
   border-top: none;
@@ -19,23 +38,27 @@
     width: 25%; // User
   }
   &:nth-child(2) {
-    width: 20%; // Hours
+    width: 20%; // Team
   }
   &:nth-child(3) {
-    width: 20%; // Days
+    width: 15%; // Hours
   }
   &:nth-child(4) {
-    width: 25%; // Rate
+    width: 20%; // Days
   }
   &:nth-child(5) {
-    width: 10%; // Currency
+    width: 12.5%; // Rate
   }
   &:nth-child(6) {
-    width: 10%; // Currency
+    width: 12.5%; // Currency
   }
 }
 .people-comp__button {
-  position: absolute;
-  top: -1%;
-  left: 90%;
+  margin-right: 40px;
+}
+.people-comp__team-title {
+  font-weight: 500;
+  font-size: 25px;
+  margin: 25px 10px 10px;
+  color: var(--placeholder-color);
 }

@@ -1,0 +1,7 @@
+@import "../variables.scss";
+
+.settings__container {
+  @include flex($d: column);
+  padding: 10px 0;
+  width: 100%;
+}

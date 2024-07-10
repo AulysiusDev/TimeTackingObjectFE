@@ -13,10 +13,10 @@ export default function PeopleTableModalContents({ person }) {
     <div className="people-table-modal__content-cont">
       <div className="people-table-modal__inputs-cont">
         <InputContainer label={"Role"} color={"var(--primary-color)"}>
-          <TextField placeholder={person.role} className="input-width" />
+          <TextField placeholder={person?.role} className="input-width" />
         </InputContainer>
         <InputContainer label={"Team"} color={"var(--primary-color)"}>
-          <TextField placeholder={person.team} className="input-width" />
+          <TextField placeholder={person?.team} className="input-width" />
         </InputContainer>
         <InputContainer label={"Hours"} color={"var(--primary-color)"}>
           <div className="work-schedule__content-cont">
@@ -28,9 +28,9 @@ export default function PeopleTableModalContents({ person }) {
                 placeholder={
                   hoursOptions[
                     hoursOptions.findIndex(
-                      (option) => option.label === person.startTime
+                      (option) => option?.label === person?.startTime
                     )
-                  ].label
+                  ]?.label
                 }
               />
             </InputContainer>
@@ -42,9 +42,9 @@ export default function PeopleTableModalContents({ person }) {
                 placeholder={
                   hoursOptions[
                     hoursOptions.findIndex(
-                      (option) => option.label === person.endTime
+                      (option) => option?.label === person?.endTime
                     )
-                  ].label
+                  ]?.label
                 }
               />
             </InputContainer>
@@ -71,10 +71,10 @@ export default function PeopleTableModalContents({ person }) {
           </div>
         </InputContainer>
         <InputContainer label={"Rate"} color={"var(--primary-color)"}>
-          <TextField className="input-width" placeholder={person.rate} />
+          <TextField className="input-width" placeholder={person?.rate} />
         </InputContainer>
         <InputContainer label={"Currency"} color={"var(--primary-color)"}>
-          <TextField className="input-width" placeholder={person.currency} />
+          <TextField className="input-width" placeholder={person?.currency} />
         </InputContainer>
         <div className="people-table-modal__delete-cont">
           <Button

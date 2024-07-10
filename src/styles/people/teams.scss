@@ -6,12 +6,15 @@
   flex-grow: 1;
   flex-basis: 15%;
   align-items: flex-start;
-  margin-top: 55px;
+  margin-top: 35px;
+  position: relative;
+  min-width: 200px;
 }
 .teams__list {
   list-style: none;
   width: 150px;
-  margin-top: 20px;
+  margin-top: 40px;
+  position: fixed;
   & li {
     margin-top: 30px;
     font-size: 25px;
@@ -21,4 +24,10 @@
     transition: color 0.15s ease-in-out;
     cursor: pointer;
   }
+}
+.teams__divider {
+  height: 70vh;
+  align-self: flex-end;
+  position: fixed;
+  margin-right: 10px;
 }

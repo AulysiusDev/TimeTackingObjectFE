@@ -6,20 +6,18 @@
   height: 100%;
   flex-grow: 1;
   width: 100%;
+  background-color: var(--primary-background-color);
+  margin-top: -5px;
 }
 .people__top-cont {
   width: 100%;
   @include flex();
-  padding: 30px 0 0 30px;
-  // background: var(--ui-background-color);
+  align-items: center;
+  // padding: 30px 0 0 30px;
 }
 .people__content-cont {
   display: flex;
   width: 100%;
   gap: 20px;
   flex-grow: 1;
-}
-.people__divider {
-  height: 70vh;
-  align-self: center;
 }

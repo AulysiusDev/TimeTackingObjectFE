@@ -11,12 +11,21 @@ export default function Filters() {
         <section className="filters__side-section">
           <InputContainer>
             <Dropdown
-              className="input-width users"
+              className="input-width work-schedule__dropdown"
               placeholder="Filter by user"
             />
           </InputContainer>
           <InputContainer>
-            <Dropdown className="input-width" placeholder="Filter by board" />
+            <Dropdown
+              className="input-width work-schedule__dropdown"
+              placeholder="Filter by team"
+            />
+          </InputContainer>
+          <InputContainer>
+            <Dropdown
+              className="input-width work-schedule__dropdown"
+              placeholder="Filter by board"
+            />
           </InputContainer>
           <InputContainer>
             <WeekPicker />

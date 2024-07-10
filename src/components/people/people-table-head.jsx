@@ -8,12 +8,12 @@ export default function PeopleTableHead() {
     <thead className="people-table-head__container">
       <tr className="people-table-head__row">
         {columns.map((column) => (
-          <td
-            className="people-table-head__field people-comp__field-width"
+          <th
+            className="people-table-head__field people-comp__head-width"
             key={column}
           >
             {column}
-          </td>
+          </th>
         ))}
       </tr>
     </thead>
