@@ -8,30 +8,16 @@ import ExportTable from "../components/export/export-table";
 
 export default function Export() {
   const [generated, setGenerated] = useState(false);
+
   return (
     <section className="export__container">
       <article className="export__top-cont">
         <PageTitle styles={{ width: "11%", marginTop: "10px" }}>
           Export
         </PageTitle>
-        <ExportFilters />
+        <ExportFilters generated={generated} setGenerated={setGenerated} />
       </article>
-      <article className="export__button-cont">
-        <Button
-          onClick={() => setGenerated(!generated)}
-          size={Button.sizes.LARGE}
-        >
-          {generated ? "Re-Generate" : "Generate"}
-        </Button>
-        <Button
-          onClick={() => setGenerated(!generated)}
-          disabled={!generated}
-          kind={Button.kinds.SECONDARY}
-          size={Button.sizes.LARGE}
-        >
-          Export
-        </Button>
-      </article>
+
       {generated ? (
         <section className="export__bottom-cont">
           <div className="export__hours-cont">

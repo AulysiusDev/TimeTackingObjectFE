@@ -1,42 +1,49 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/export/export-filters.scss";
-import { Checkbox, DatePicker, Dropdown } from "monday-ui-react-core";
+import { Button, Checkbox, DatePicker, Dropdown } from "monday-ui-react-core";
 import InputContainer from "../common/input-container";
 
-export default function ExportFilters() {
+export default function ExportFilters({ generated, setGenerated }) {
   return (
     <section className="export-filters__container">
-      <InputContainer styles={{ margin: "-17.5px 70px 0 0" }}>
-        <DatePicker />
-      </InputContainer>
-      <InputContainer>
+      <div className="export-filters__dropdowns-cont">
         <Dropdown
-          className="input-width export-filters__dropdown"
+          className="input-width dropdown"
           placeholder="Filter by user"
         />
-      </InputContainer>
-      <InputContainer>
         <Dropdown
-          className="input-width export-filters__dropdown"
+          className="input-width dropdown"
           placeholder="Filter by team"
         />
-      </InputContainer>
-      <InputContainer>
         <Dropdown
-          className="input-width export-filters__dropdown"
+          className="input-width dropdown"
           placeholder="Filter by board"
         />
-      </InputContainer>
-      <InputContainer
-        label={"Formats"}
-        color={"var(--primary-color)"}
-        styles={{ marginLeft: "40px" }}
-      >
+      </div>
+      <InputContainer label={"Formats"} color={"var(--primary-color)"}>
         <div className="export-filters__checkbox-cont">
           <Checkbox label={".CSV"} />
           <Checkbox label={".XLXS"} />
         </div>
       </InputContainer>
+
+      <DatePicker className="export-filters__date-picker" />
+      <article className="export__button-cont">
+        <Button
+          onClick={() => setGenerated(!generated)}
+          size={Button.sizes.LARGE}
+        >
+          {generated ? "Re-Generate" : "Generate"}
+        </Button>
+        <Button
+          onClick={() => setGenerated(!generated)}
+          disabled={!generated}
+          kind={Button.kinds.SECONDARY}
+          size={Button.sizes.LARGE}
+        >
+          Export
+        </Button>
+      </article>
     </section>
   );
 }

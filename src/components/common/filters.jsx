@@ -11,19 +11,19 @@ export default function Filters() {
         <section className="filters__side-section">
           <InputContainer>
             <Dropdown
-              className="input-width work-schedule__dropdown"
+              className="input-width dropdown"
               placeholder="Filter by user"
             />
           </InputContainer>
           <InputContainer>
             <Dropdown
-              className="input-width work-schedule__dropdown"
+              className="input-width dropdown"
               placeholder="Filter by team"
             />
           </InputContainer>
           <InputContainer>
             <Dropdown
-              className="input-width work-schedule__dropdown"
+              className="input-width dropdown"
               placeholder="Filter by board"
             />
           </InputContainer>

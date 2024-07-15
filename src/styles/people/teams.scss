@@ -6,14 +6,13 @@
   flex-grow: 1;
   flex-basis: 15%;
   align-items: flex-start;
-  margin-top: 35px;
   position: relative;
   min-width: 200px;
 }
 .teams__list {
   list-style: none;
   width: 150px;
-  margin-top: 40px;
+  margin-top: 60px;
   position: fixed;
   & li {
     margin-top: 30px;

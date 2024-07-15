@@ -12,21 +12,21 @@
   align-items: center;
   width: 85%;
   position: fixed;
-  height: 120px;
+  height: 125px;
   background-color: var(--fixed-light-color);
   z-index: 998;
   justify-content: space-between;
-  padding-top: 30px;
   gap: 20px;
 }
 .people-comp__top-wrapper {
   @include flex();
   justify-content: space-between;
   width: 100%;
+  gap: 20px;
 }
 .people-comp__table-wrapper {
   width: 98.5%;
-  margin-top: 150px;
+  margin-top: 165px;
   height: 100%;
 }
 .people-comp__body-width,
@@ -55,6 +55,7 @@
 }
 .people-comp__button {
   margin-right: 40px;
+  justify-self: flex-end;
 }
 .people-comp__team-title {
   font-weight: 500;

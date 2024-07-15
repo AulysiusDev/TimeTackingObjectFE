@@ -24,7 +24,7 @@ export default function PeopleTableModalContents({ person }) {
               <Dropdown
                 options={hoursOptions}
                 searchable
-                className="work-schedule__dropdown"
+                className="dropdown"
                 placeholder={
                   hoursOptions[
                     hoursOptions.findIndex(
@@ -37,7 +37,7 @@ export default function PeopleTableModalContents({ person }) {
             <InputContainer label={"End time"}>
               <Dropdown
                 options={hoursOptions}
-                className="work-schedule__dropdown"
+                className="dropdown"
                 searchable
                 placeholder={
                   hoursOptions[

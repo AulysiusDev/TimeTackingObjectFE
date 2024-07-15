@@ -13,10 +13,7 @@ export default function PeopleAddModalContent() {
     <div className="people-table-modal__content-cont">
       <div className="people-table-modal__inputs-cont">
         <InputContainer label={"User"} color={"var(--primary-color)"}>
-          <Dropdown
-            options={hoursOptions}
-            className="work-schedule__dropdown input-width"
-          />
+          <Dropdown options={hoursOptions} className="dropdown input-width" />
         </InputContainer>
         <InputContainer label={"Role"} color={"var(--primary-color)"}>
           <TextField className="input-width" />
@@ -27,16 +24,10 @@ export default function PeopleAddModalContent() {
         <InputContainer label={"Hours"} color={"var(--primary-color)"}>
           <div className="work-schedule__content-cont">
             <InputContainer label={"Start time"}>
-              <Dropdown
-                options={hoursOptions}
-                className="work-schedule__dropdown"
-              />
+              <Dropdown options={hoursOptions} className="dropdown" />
             </InputContainer>
             <InputContainer label={"End time"}>
-              <Dropdown
-                options={hoursOptions}
-                className="work-schedule__dropdown"
-              />
+              <Dropdown options={hoursOptions} className="dropdown" />
             </InputContainer>
           </div>
         </InputContainer>

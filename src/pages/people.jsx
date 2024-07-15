@@ -1,6 +1,5 @@
 import React from "react";
 import "../styles/people/people.scss";
-import { Divider } from "monday-ui-react-core";
 import Teams from "../components/people/teams";
 import PeopleComp from "../components/people/people-comp";
 

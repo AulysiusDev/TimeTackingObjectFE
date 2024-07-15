@@ -12,6 +12,7 @@ import People from "./pages/people";
 import PeopleContextProvider from "./context/people-context";
 import Settings from "./pages/settings";
 import Export from "./pages/export";
+import ExportContextProvider from "./context/export-context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -28,7 +29,9 @@ function App() {
   return (
     <PeopleContextProvider>
       <EntriesContextProvider>
-        <RouterProvider router={router} />
+        <ExportContextProvider>
+          <RouterProvider router={router} />
+        </ExportContextProvider>
       </EntriesContextProvider>
     </PeopleContextProvider>
   );
