@@ -13,11 +13,13 @@ import PeopleContextProvider from "./context/people-context";
 import Settings from "./pages/settings";
 import Export from "./pages/export";
 import ExportContextProvider from "./context/export-context";
+import Timesheets from "./pages/timesheets";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<Layout />}>
       <Route index element={<Entries />} />
+      <Route path="timesheets" element={<Timesheets />} />
       <Route path="people" element={<People />} />
       <Route path="export" element={<Export />} />
       <Route path="settings" element={<Settings />} />

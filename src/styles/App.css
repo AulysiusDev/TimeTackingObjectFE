@@ -22,14 +22,7 @@ p {
   margin: 0;
   padding: 0;
 }
-/* code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, Courier New, monospace;
-} */
-/* body {
-  font-family: Roboto, sans-serif;
-  margin: 0;
-  padding: 0;
-} */
+
 .app__container {
   align-items: center;
   align-items: flex-start;
@@ -38,6 +31,10 @@ p {
 }
 
 /* Utility classes */
+
+.page-padding {
+  padding-top: 45px !important;
+}
 
 .clickable {
   cursor: pointer;

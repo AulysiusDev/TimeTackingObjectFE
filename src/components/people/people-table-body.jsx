@@ -14,8 +14,8 @@ export default function PeopleTableBody() {
             teams[team].toLowerCase() === "all" || person.team === teams[team]
           );
         })
-        .map((peep) => {
-          return <PeopleTableRow person={peep} />;
+        .map((peep, i) => {
+          return <PeopleTableRow person={peep} key={i} />;
         })}
     </tbody>
   );

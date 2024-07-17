@@ -3,6 +3,10 @@ export const navlinks = [
     href: "/",
     text: "Entries",
   },
+  {
+    href: "/timesheets",
+    text: "Timesheets",
+  },
   // {
   //   href: "/automate",
   //   text: "Automate",

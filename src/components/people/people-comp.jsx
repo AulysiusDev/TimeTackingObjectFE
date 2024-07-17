@@ -13,7 +13,7 @@ export default function PeopleComp() {
   const { setShowAddPeopleModal, team } = usePeople();
   return (
     <section className="people-comp__container">
-      <div className="people-comp__top-cont people__page-padding">
+      <div className="people-comp__top-cont page-padding">
         <PeopleAddModal />
         <div className="people-comp__top-wrapper">
           {/* <PageTitle styles={{ alignSelf: "flex-start" }}>People</PageTitle> */}

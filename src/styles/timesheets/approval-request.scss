@@ -1,0 +1,21 @@
+@import "../variables.scss";
+
+.approval-request__container {
+  @include flex($d: column);
+  gap: 7.5px;
+}
+.approval-request__title {
+  font-size: 17.5px;
+  color: var(--primary-color);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+.approval-request__buttons-cont {
+  @include flex-center();
+  width: 100%;
+  gap: 10px;
+}
+.approval__request-icon {
+  width: 30px;
+  height: 30px;
+}

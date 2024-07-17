@@ -21,7 +21,7 @@ export default function TableHeader() {
         {datesArr &&
           datesArr.map((date, i) => {
             return (
-              <td className="week-table__header-column">
+              <td className="week-table__header-column" key={date}>
                 <DaysHeader date={date} i={i} />
               </td>
             );
