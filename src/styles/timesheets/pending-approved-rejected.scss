@@ -1,0 +1,39 @@
+@import "../variables.scss";
+
+.par__container {
+  @include flex($d: column);
+  width: 100%;
+  gap: 25px;
+  margin: 10px 0;
+}
+.par__section-cont {
+  @include flex($d: column);
+  width: 95%;
+  &:nth-of-type(2) > .par__title {
+    color: var(--positive-color);
+  }
+  &:nth-of-type(3) > .par__title {
+    color: var(--negative-color);
+  }
+}
+.par__title {
+  @include flex();
+  font-size: 20px;
+  color: var(--secondary-text-color);
+  text-align: left;
+  width: 100%;
+  font-weight: 500;
+  margin-bottom: 20px;
+  & > span {
+    width: 10%;
+  }
+}
+.par__content-cont {
+  @include flex();
+  width: 100%;
+  flex-wrap: wrap;
+}
+.par__date {
+  color: var(--primary-color);
+  text-decoration: underline;
+}

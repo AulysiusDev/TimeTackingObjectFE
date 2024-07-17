@@ -10,13 +10,6 @@
   justify-content: space-between;
   width: 100%;
 }
-.approval-requests__title {
-  font-weight: 500;
-  font-size: 20px;
-  text-align: left;
-  color: var(--primary-text-color);
-  flex-basis: 30%;
-}
 .approval-requests__requests {
   @include flex();
   font-weight: 500;
@@ -24,9 +17,6 @@
   flex-basis: 30%;
   cursor: pointer;
   color: (--secondary-text-color);
-  & > * {
-    margin: 5px 0 0 5px;
-  }
 }
 .approval-requests__requests-cont {
   @include flex();

@@ -4,3 +4,23 @@
   @include flex($d: column);
   width: 100%;
 }
+.timesheets__subheader {
+  align-self: flex-start;
+  font-weight: 400;
+  color: var(--primary-color);
+  cursor: pointer;
+}
+.timesheets__name {
+  @include flex();
+  font-weight: 500;
+  font-size: 20px;
+  text-align: left;
+  color: var(--primary-text-color);
+  flex-basis: 30%;
+}
+.timesheets__icon {
+  width: 30px;
+  height: 30px;
+  color: var(--secondary-text-color);
+  margin: 5px 0 0 5px;
+}

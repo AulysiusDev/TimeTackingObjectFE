@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+.user__container {
+  @include flex($d: column);
+  width: 100%;
+  cursor: pointer;
+}
+.user__content-cont {
+  @include flex();
+  width: 100%;
+  cursor: pointer;
+}
+.user__team {
+  font-weight: 500;
+  font-size: 15px;
+}
+.user__icon {
+  width: 30px;
+  height: 30px;
+  color: var(--secondary-text-color);
+  margin: 5px 0 0 5px;
+}

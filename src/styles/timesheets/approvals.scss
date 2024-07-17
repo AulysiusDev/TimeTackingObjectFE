@@ -12,14 +12,6 @@
   justify-content: space-between;
   padding: 0 15px 15px;
 }
-.timesheets__subheader {
-  @include flex();
-  justify-content: space-between;
-  font-weight: 400;
-  color: var(--primary-color);
-  text-align: left;
-  cursor: pointer;
-}
 .approvals__buttons-cont {
   @include flex();
   gap: 10px;
