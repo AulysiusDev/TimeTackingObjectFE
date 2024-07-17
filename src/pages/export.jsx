@@ -12,11 +12,9 @@ export default function Export() {
   return (
     <section className="export__container">
       <article className="export__top-cont">
-        <PageTitle styles={{ width: "11%", marginTop: "10px" }}>
-          Export
-        </PageTitle>
-        <ExportFilters generated={generated} setGenerated={setGenerated} />
+        <PageTitle>Export</PageTitle>
       </article>
+      <ExportFilters generated={generated} setGenerated={setGenerated} />
 
       {generated ? (
         <section className="export__bottom-cont">

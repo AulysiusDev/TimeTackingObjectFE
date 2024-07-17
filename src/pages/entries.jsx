@@ -4,6 +4,7 @@ import Filters from "../components/common/filters";
 import TotalHours from "../components/common/total-hours";
 import PageTitle from "../components/common/page-title";
 import WeekTable from "../components/entries/week-table";
+import Status from "../components/entries/status";
 
 export default function Entries() {
   return (
@@ -13,14 +14,17 @@ export default function Entries() {
           styles={{
             justifySelf: "flex-start",
             width: "20%",
-            marginTop: "15px",
+            // marginTop: "20px",
           }}
         >
           Time entries
         </PageTitle>
         <Filters />
       </div>
-      <TotalHours />
+      <section className="entries__middle-cont">
+        <Status />
+        <TotalHours />
+      </section>
       <WeekTable />
     </section>
   );

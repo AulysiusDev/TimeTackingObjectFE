@@ -4,10 +4,17 @@
   @include flex($d: column);
   width: 100%;
   gap: 20px;
+  padding-top: 40px;
 }
 .entries__top-cont {
   @include flex();
   width: 100%;
   justify-content: flex-start;
+  align-items: flex-start;
   margin-bottom: 35px;
+}
+.entries__middle-cont {
+  width: 90%;
+  @include flex();
+  justify-content: space-between;
 }

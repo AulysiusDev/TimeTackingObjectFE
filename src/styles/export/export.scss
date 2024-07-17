@@ -7,7 +7,6 @@
 }
 .export__top-cont,
 .export__hours-cont,
-.export__button-cont,
 .export__generated-cont,
 .export__table-cont {
   @include flex();
@@ -16,21 +15,16 @@
 .export__container {
   width: 100%;
   gap: 20px;
+  padding-top: 40px;
 }
 .export__top-cont {
   align-items: flex-start;
   justify-content: flex-start;
   width: 100%;
-  padding: 20px 0;
 }
 .export__hours-cont {
   width: 100%;
   margin-top: 50px;
-}
-.export__button-cont {
-  justify-content: flex-start;
-  width: 95%;
-  gap: 30px;
 }
 .export__bottom-cont {
   margin-top: 20px;

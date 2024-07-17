@@ -4,7 +4,6 @@ import HoursCount from "./hours-count";
 import InputContainer from "../common/input-container.jsx";
 import { ButtonGroup } from "monday-ui-react-core";
 import { totalHoursOptions } from "../../utils/data.js";
-import PageTitle from "./page-title.jsx";
 
 export default function TotalHours() {
   return (

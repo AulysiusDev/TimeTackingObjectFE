@@ -3,7 +3,7 @@
 .filters__container {
   @include flex($d: column);
   width: 100%;
-  margin: 20px 0 0;
+  margin: 0;
 }
 .filters__wrapper {
   @include flex();
@@ -12,7 +12,7 @@
   height: 100%;
 }
 .filters__side-section {
-  padding: 10px;
+  // padding: 10px;
   @include flex();
   gap: 20px;
 }

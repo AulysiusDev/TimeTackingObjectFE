@@ -1,0 +1,24 @@
+@import "../variables.scss";
+
+.status__container {
+  @include flex();
+  justify-content: space-between;
+  height: 100%;
+  width: 100%;
+  gap: 50px;
+}
+.status__text-cont {
+  @include flex();
+}
+.status__status-text {
+  font-size: 20px;
+  font-weight: 500;
+  color: var(--secondary-text-color);
+  @include flex();
+  gap: 20px;
+}
+.status__status-status {
+  color: var(--primary-color);
+  font-weight: 600;
+  font-size: 25px;
+}
