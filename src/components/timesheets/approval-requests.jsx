@@ -13,17 +13,19 @@ export default function ApprovalRequests({ person }) {
     <section className="approval-requests__container">
       <section className="approval-requests__top-cont">
         <h1 className="timesheets__name">{person?.name}</h1>
-        <h2
-          className="approval-requests__requests"
-          onClick={() => setExpand(!expand)}
-        >
-          {person?.reqs?.length} requests{" "}
+        <div className="timesheets__middle-cont">
+          <h2
+            className="approval-requests__requests"
+            onClick={() => setExpand(!expand)}
+          >
+            {person?.reqs?.length} requests{" "}
+          </h2>
           {!expand ? (
             <DropdownChevronDown className="timesheets__icon" />
           ) : (
             <DropdownChevronUp className="timesheets__icon" />
           )}
-        </h2>
+        </div>
         <Button>Approve all {person.reqs.length} requests</Button>
       </section>
       {expand ? (

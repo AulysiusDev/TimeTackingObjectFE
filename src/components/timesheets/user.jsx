@@ -7,7 +7,7 @@ import {
 } from "monday-ui-react-core/icons";
 import PendingApprovedRejected from "./pending-approved-rejected";
 
-export default function User() {
+export default function User({ person }) {
   const [expand, setExpand] = useState(false);
   return (
     <section className="user__container">
@@ -15,18 +15,23 @@ export default function User() {
         className="user__content-cont"
         onClick={() => setExpand(!expand)}
       >
-        <h1 className="timesheets__name">
-          Steven Jacobs
-          {expand ? (
-            <DropdownChevronUp className="timesheets__icon" />
-          ) : (
-            <DropdownChevronDown className="timesheets__icon" />
-          )}
-        </h1>
-        <h2 className="user__team">Marketing</h2>
+        <div className="user__title-cont">
+          <h1 className="timesheets__name">{person?.name}</h1>
+          <h2 className="user__team">{person?.team}</h2>
+        </div>
+        {expand ? (
+          <DropdownChevronUp className="timesheets__icon" />
+        ) : (
+          <DropdownChevronDown className="timesheets__icon" />
+        )}
+        <div className="user__totals-cont">
+          <span className="user__total">1</span>
+          <span className="user__total">27</span>
+          <span className="user__total">2</span>
+        </div>
       </article>
       <Divider />
-      {expand ? <PendingApprovedRejected /> : null}
+      {expand ? <PendingApprovedRejected person={person} /> : null}
     </section>
   );
 }

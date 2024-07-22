@@ -13,10 +13,11 @@
 .approval-requests__requests {
   @include flex();
   font-weight: 500;
-  font-size: 17.5px;
+  font-size: 15px;
   flex-basis: 30%;
   cursor: pointer;
-  color: (--secondary-text-color);
+  color: var(--secondary-text-color);
+  font-style: italic;
 }
 .approval-requests__requests-cont {
   @include flex();

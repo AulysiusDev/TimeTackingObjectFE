@@ -3,7 +3,14 @@
 .user__container {
   @include flex($d: column);
   width: 100%;
-  cursor: pointer;
+}
+.user__title-cont {
+  @include flex();
+  width: 25%;
+  padding: 10px;
+  h1 {
+    flex-basis: 60%;
+  }
 }
 .user__content-cont {
   @include flex();
@@ -13,10 +20,26 @@
 .user__team {
   font-weight: 500;
   font-size: 15px;
-}
-.user__icon {
-  width: 30px;
-  height: 30px;
+  font-style: italic;
   color: var(--secondary-text-color);
-  margin: 5px 0 0 5px;
+}
+.user__totals-cont {
+  @include flex();
+  gap: 20px;
+  flex-grow: 1;
+  justify-content: flex-end;
+  margin: 0 50px;
+  span {
+    font-weight: 600;
+    font-size: 17.5px;
+  }
+  span:nth-child(1) {
+    color: var(--warning-color-hover);
+  }
+  span:nth-child(2) {
+    color: var(--positive-color);
+  }
+  span:nth-child(3) {
+    color: var(--negative-color);
+  }
 }
