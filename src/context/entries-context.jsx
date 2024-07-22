@@ -1,11 +1,11 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
 import mondaySdk from "monday-sdk-js";
-import { addMonths, endOfWeek, startOfWeek, subMonths } from "date-fns";
+import { endOfWeek, startOfWeek } from "date-fns";
 import { createDatesArray } from "../utils/helpers";
+import { fetchUserLogs } from "../utils/utils";
 
 const EntriesContext = createContext(null);
 const monday = mondaySdk();
-monday.setToken(process.env.MONDAY_API_TOKEN);
 
 export default function EntriesContextProvider({ children }) {
   const [week, setWeek] = useState({

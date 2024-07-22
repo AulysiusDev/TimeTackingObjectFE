@@ -14,6 +14,7 @@ import Settings from "./pages/settings";
 import Export from "./pages/export";
 import ExportContextProvider from "./context/export-context";
 import Timesheets from "./pages/timesheets";
+import ThemeContextProvider from "./context/theme-context";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -29,13 +30,15 @@ const router = createBrowserRouter(
 
 function App() {
   return (
-    <PeopleContextProvider>
-      <EntriesContextProvider>
-        <ExportContextProvider>
-          <RouterProvider router={router} />
-        </ExportContextProvider>
-      </EntriesContextProvider>
-    </PeopleContextProvider>
+    <ThemeContextProvider>
+      <PeopleContextProvider>
+        <EntriesContextProvider>
+          <ExportContextProvider>
+            <RouterProvider router={router} />
+          </ExportContextProvider>
+        </EntriesContextProvider>
+      </PeopleContextProvider>
+    </ThemeContextProvider>
   );
 }
 

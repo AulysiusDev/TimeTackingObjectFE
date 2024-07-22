@@ -77,7 +77,7 @@ export default function UserTimesheets() {
       <h1 className="timesheets__subheader">Timesheets</h1>
       <section className="user-timesheets__content-cont">
         {data.map((person) => (
-          <User person={person} />
+          <User person={person} key={person.name} />
         ))}
       </section>
     </div>

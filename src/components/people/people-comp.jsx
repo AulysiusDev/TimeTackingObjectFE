@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/people/people-comp.scss";
-import PeopleTableHead from "./people-table-head";
-import PeopleTableBody from "./people-table-body";
+import PeopleTableHead from "./people-table-head.jsx";
+import PeopleTableBody from "./people-table-body.jsx";
 import { Button } from "monday-ui-react-core";
 import { Add } from "monday-ui-react-core/icons";
 import { usePeople } from "../../context/people-context.jsx";

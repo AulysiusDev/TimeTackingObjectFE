@@ -34,10 +34,10 @@ export default function Approvals() {
       </div>
       <article className="approvals__content-cont">
         {approvalsArr.map((person, i) => (
-          <>
-            <ApprovalRequests key={person.name} person={person} />
+          <React.Fragment key={i}>
+            <ApprovalRequests person={person} />
             <Divider />
-          </>
+          </React.Fragment>
         ))}
       </article>
     </section>

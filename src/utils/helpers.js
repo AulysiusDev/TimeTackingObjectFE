@@ -1,3 +1,7 @@
+import mondaySdk from "monday-sdk-js";
+
+const monday = mondaySdk();
+
 export function createDatesArray(startDate, endDate) {
   const datesArray = [];
   let currentDate = new Date(startDate);
@@ -41,4 +45,19 @@ export function isWeekdays(days) {
     days.length === weekdays.length &&
     days.every((day, i) => day === weekdays[i])
   );
+}
+
+export async function getSessionToken() {
+  try {
+    const token = await monday.get("sessionToken");
+    if (token.errorMessage === undefined) {
+      return token.data;
+    } else if (token.errorMessage) {
+      return token.errorMessage;
+    }
+    return token.data;
+  } catch (error) {
+    console.error(error);
+    return "Error fetching session token";
+  }
 }

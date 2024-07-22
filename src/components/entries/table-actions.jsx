@@ -1,7 +1,7 @@
 import React from "react";
 import InputContainer from "../common/input-container.jsx";
 import { Checkbox } from "monday-ui-react-core";
-import { useEntries } from "../../context/entries-context";
+import { useEntries } from "../../context/entries-context.jsx";
 
 export default function TableActions() {
   const { selectedItems, setSelectedItems } = useEntries();

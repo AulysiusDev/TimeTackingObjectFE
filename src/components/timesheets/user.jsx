@@ -25,9 +25,9 @@ export default function User({ person }) {
           <DropdownChevronDown className="timesheets__icon" />
         )}
         <div className="user__totals-cont">
-          <span className="user__total">1</span>
-          <span className="user__total">27</span>
-          <span className="user__total">2</span>
+          <span className="user__total">{person?.pending.length}</span>
+          <span className="user__total">{person?.approved.length}</span>
+          <span className="user__total">{person?.rejected.length}</span>
         </div>
       </article>
       <Divider />
