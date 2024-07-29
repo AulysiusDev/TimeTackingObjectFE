@@ -1,13 +1,19 @@
-import React, { createContext, useState, useContext } from "react";
+import React, { createContext, useState, useContext, useEffect } from "react";
+import useMondayContext from "../hooks/useMondayContext";
+import { changeTheme } from "../utils/helpers";
 
 const ThemeContext = createContext(null);
 
 export default function ThemeContextProvider({ children }) {
-  const [context, setContext] = useState({});
-  const [theme, setTheme] = useState({});
+  const { context } = useMondayContext();
+
+  useEffect(() => {
+    if (!context) return;
+    changeTheme(context?.theme);
+  }, [context]);
 
   return (
-    <ThemeContext.Provider value={{ theme, setTheme, context, setContext }}>
+    <ThemeContext.Provider value={{ context }}>
       {children}
     </ThemeContext.Provider>
   );

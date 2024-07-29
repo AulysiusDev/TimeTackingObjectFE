@@ -8,40 +8,13 @@ import Status from "../components/entries/status";
 import { fetchUserLogs } from "../utils/utils";
 import { useTheme } from "../context/theme-context";
 import mondaySdk from "monday-sdk-js";
-import { isEqual } from "date-fns";
 
 const monday = mondaySdk();
 
 export default function Entries() {
-  const { theme, setTheme, context, setContext } = useTheme();
+  const { context } = useTheme();
+
   console.log("Component rendered");
-  function changeTheme(theme) {
-    if (theme === "dark") {
-      document.querySelector("body").setAttribute("data-theme", "dark");
-      setTheme("dark");
-    } else if (theme === "black") {
-      document.querySelector("body").setAttribute("data-theme", "black");
-      setTheme("black");
-    } else if (theme === "light" || !theme) {
-      document.querySelector("body").setAttribute("data-theme", "light");
-      setTheme("light");
-    }
-  }
-
-  async function fetchContextAndEntries() {
-    monday.listen("context", async (res) => {
-      console.log({ res });
-      setContext((previousContext) =>
-        isEqual(previousContext, res.data) ? previousContext : res.data
-      );
-      changeTheme(res.data.theme);
-      const logs = await fetchUserLogs(res.data.user?.id);
-    });
-  }
-
-  useEffect(() => {
-    fetchContextAndEntries();
-  }, []);
 
   return (
     <section className="entries__container">
@@ -50,7 +23,6 @@ export default function Entries() {
           styles={{
             justifySelf: "flex-start",
             width: "20%",
-            // marginTop: "20px",
           }}
         >
           Time entries

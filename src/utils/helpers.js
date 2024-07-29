@@ -2,6 +2,19 @@ import mondaySdk from "monday-sdk-js";
 
 const monday = mondaySdk();
 
+export function changeTheme(theme) {
+  if (theme === "dark") {
+    document.querySelector("body").setAttribute("data-theme", "dark");
+    return "dark";
+  } else if (theme === "black") {
+    document.querySelector("body").setAttribute("data-theme", "black");
+    return "black";
+  } else if (theme === "light" || !theme) {
+    document.querySelector("body").setAttribute("data-theme", "light");
+    return "light";
+  }
+}
+
 export function createDatesArray(startDate, endDate) {
   const datesArray = [];
   let currentDate = new Date(startDate);

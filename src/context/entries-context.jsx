@@ -3,6 +3,7 @@ import mondaySdk from "monday-sdk-js";
 import { endOfWeek, startOfWeek } from "date-fns";
 import { createDatesArray } from "../utils/helpers";
 import { fetchUserLogs } from "../utils/utils";
+import { useTheme } from "./theme-context";
 
 const EntriesContext = createContext(null);
 const monday = mondaySdk();
@@ -15,9 +16,22 @@ export default function EntriesContextProvider({ children }) {
   const [datesArr, setDatesArr] = useState([]);
   const [selectedItems, setSelectedItems] = useState([]);
 
+  const { context } = useTheme();
+
   useEffect(() => {
     setDatesArr(createDatesArray(week.firstDay, week.lastDay));
   }, [week]);
+
+  useEffect(() => {
+    if (!context?.user) return;
+    async function getLogs() {
+      const logsRes = await fetchUserLogs({
+        userId: parseInt(context?.user?.id),
+      });
+      console.log(context);
+    }
+    getLogs();
+  }, [context]);
 
   return (
     <EntriesContext.Provider
