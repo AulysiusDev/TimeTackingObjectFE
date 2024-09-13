@@ -1,7 +1,7 @@
 import React from "react";
 import "../../styles/people/people-table-modal.scss";
 import { days, hoursOptions } from "../../utils/data.js";
-import InputContainer from "../common/input-container.jsx";
+import InputContainer from "../common/input-container";
 import { Button, Checkbox, Dropdown, TextField } from "monday-ui-react-core";
 import { Delete } from "monday-ui-react-core/icons";
 

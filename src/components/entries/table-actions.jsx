@@ -1,5 +1,5 @@
 import React from "react";
-import InputContainer from "../common/input-container.jsx";
+import InputContainer from "../common/input-container";
 import { Checkbox } from "monday-ui-react-core";
 import { useEntries } from "../../context/entries-context.jsx";
 

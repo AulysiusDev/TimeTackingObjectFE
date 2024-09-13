@@ -5,7 +5,6 @@ import { getSessionToken } from "./helpers";
 const monday = mondaySdk();
 
 export async function fetchUserLogs(userId) {
-  console.log(userId);
   try {
     const sesstionToken = await getSessionToken();
     const response = await fetch(

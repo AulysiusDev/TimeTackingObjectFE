@@ -10,7 +10,6 @@ export default function useMondayContext() {
   useEffect(() => {
     async function fetchContext() {
       monday.listen("context", async (res) => {
-        console.log({ res });
         setContext((previousContext) =>
           isEqual(previousContext, res.data) ? previousContext : res.data
         );

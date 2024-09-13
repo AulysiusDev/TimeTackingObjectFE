@@ -14,8 +14,6 @@ const monday = mondaySdk();
 export default function Entries() {
   const { context } = useTheme();
 
-  console.log("Component rendered");
-
   return (
     <section className="entries__container">
       <div className="entries__top-cont">

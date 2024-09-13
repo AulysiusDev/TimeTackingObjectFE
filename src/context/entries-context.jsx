@@ -28,7 +28,6 @@ export default function EntriesContextProvider({ children }) {
       const logsRes = await fetchUserLogs({
         userId: parseInt(context?.user?.id),
       });
-      console.log(context);
     }
     getLogs();
   }, [context]);

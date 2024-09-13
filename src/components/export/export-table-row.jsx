@@ -9,7 +9,6 @@ export default function ExportTableRow({ log, index }) {
   const parsedCreatedAt = new Date(log.createdAt).toLocaleDateString();
   //   log.startDate = new Date(log.startDate).toLocaleDateString();
   log.note = log.note.slice(0, 10) + "...";
-  console.log({ exportFormat });
   return (
     <tr>
       {Object.entries(log).map(([key, value], i) => {
@@ -47,7 +46,6 @@ export default function ExportTableRow({ log, index }) {
                       const newValue = exportFormat.rows.includes(index)
                         ? exportFormat?.rows.filter((val) => val !== index)
                         : [...exportFormat?.rows, index];
-                      console.log({ newValue });
                       setExportFormat((prev) => ({
                         ...prev,
                         rows: newValue,
