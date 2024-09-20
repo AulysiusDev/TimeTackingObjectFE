@@ -6,7 +6,7 @@ const PeopleContext = createContext(null);
 
 export default function PeopleContextProvider({ children }) {
   const [team, setTeam] = useState(0);
-  const [nonUserGroup, setNonUserGroup] = useState(null);
+  const [clients, setClients] = useState(null);
   const [showRatecardsModal, setShowRatecardsModal] = useState(false);
   const [showAddRatecardsModal, setShowAddRatecardsModal] = useState(false);
   const [people, setPeople] = useState([]);
@@ -27,8 +27,8 @@ export default function PeopleContextProvider({ children }) {
         setShowRatecardsModal,
         people,
         setPeople,
-        setNonUserGroup,
-        nonUserGroup,
+        setClients,
+        clients,
       }}
     >
       {children}

@@ -6,14 +6,12 @@ import { usePeople } from "../../context/people-context.jsx";
 import RatecardsFilters from "./ratecards-filters";
 import RatecardsTableBody from "./ratecards-table-body";
 import RatecardsTableHead from "./ratecards-table-head";
-import RatecardsAddModal from "./ratecards-add-modal";
 
 const RatecardsComp: React.FC = () => {
   const { setShowAddRatecardsModal } = usePeople();
   return (
     <section className="ratecards-comp__container">
       <div className="ratecards-comp__top-cont page-padding">
-        <RatecardsAddModal />
         <div className="ratecards-comp__top-wrapper">
           {/* <PageTitle styles={{ alignSelf: "flex-start" }}>Ratecards</PageTitle> */}
           <RatecardsFilters />

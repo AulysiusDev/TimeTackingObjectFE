@@ -1,54 +1,77 @@
-import React from "react";
+import React, { useCallback } from "react";
 import "../../styles/ratecards/teams.scss";
 import { usePeople } from "../../context/people-context";
 import PageTitle from "../common/page-title";
 import { Divider } from "monday-ui-react-core";
-import { teams, nonUserGroups } from "../../utils/data";
+import { Menu } from "monday-ui-react-core/icons";
+import { teams, clients } from "../../utils/data";
+import { useTheme } from "../../context/theme-context";
 
 const Teams: React.FC = () => {
-  const { team, setTeam, setNonUserGroup, nonUserGroup } = usePeople();
+  const { team, setTeam, setClient, client } = usePeople();
+  const {
+    setAddRatecardCategory,
+    setShowAddRatecardCategoryModal,
+    ratecardCategories,
+  } = useTheme();
 
+  const handleClickAdd = useCallback((category: string) => {
+    setAddRatecardCategory(category);
+    setShowAddRatecardCategoryModal(true);
+  }, []);
   return (
-    <section className="teams__container">
-      <article className="teams__type-cont page-padding">
-        <PageTitle styles={{ position: "fixed" }}>Users</PageTitle>
-        <ul className="teams__list">
-          {teams.map((department: string, i: number) => (
-            <li
-              className="clickable"
-              key={department}
-              style={{ color: team === i ? "var(--primary-color)" : "" }}
-              onClick={() => setTeam(i)}
-            >
-              {department}
-            </li>
-          ))}
-        </ul>
+    <div className="teams__section-wrapper">
+      <section className="teams__container">
+        <article className="teams__type-cont page-padding">
+          <div className="teams__title-cont">
+            <PageTitle>Users</PageTitle>
+            <Menu
+              className="teams__add-icon clickable"
+              clickable
+              onClick={() => handleClickAdd("team")}
+            />
+          </div>
+          <ul className="teams__list">
+            {ratecardCategories.team.map((department: string, i: number) => (
+              <li
+                className="clickable"
+                key={department}
+                style={{ color: team === i ? "var(--primary-color)" : "" }}
+                onClick={() => setTeam(i)}
+              >
+                {department}
+              </li>
+            ))}
+          </ul>
+        </article>
+        <article className="teams__type-cont page-padding">
+          <div className="teams__title-cont">
+            <PageTitle>Clients</PageTitle>
+            <Menu
+              className="teams__add-icon"
+              clickable
+              onClick={() => handleClickAdd("client")}
+            />
+          </div>
+          <ul className="teams__list">
+            {ratecardCategories.client.map((clients: string, i: number) => (
+              <li
+                className="clickable"
+                key={`${clients}-xx`}
+                style={{ color: team === i ? "var(--primary-color)" : "" }}
+                onClick={() => setTeam(i)}
+              >
+                {clients}
+              </li>
+            ))}
+          </ul>
+        </article>
         <Divider
           direction={Divider.directions.VERTICAL}
           className="teams__divider"
         />
-      </article>
-      <article className="teams__type-cont page-padding">
-        <PageTitle styles={{ position: "fixed" }}>Non-users</PageTitle>
-        <ul className="teams__list">
-          {nonUserGroups.map((nonUserGroup: string, i: number) => (
-            <li
-              className="clickable"
-              key={`${nonUserGroup}-xx`}
-              style={{ color: team === i ? "var(--primary-color)" : "" }}
-              onClick={() => setTeam(i)}
-            >
-              {nonUserGroup}
-            </li>
-          ))}
-        </ul>
-        <Divider
-          direction={Divider.directions.VERTICAL}
-          className="teams__divider"
-        />
-      </article>
-    </section>
+      </section>
+    </div>
   );
 };
 export default Teams;

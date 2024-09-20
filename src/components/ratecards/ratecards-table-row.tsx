@@ -1,11 +1,9 @@
 import React from "react";
 import "../../styles/ratecards/ratecards-table-body.scss";
 import "../../styles/ratecards/ratecards-comp.scss";
-import PeopleTableModal from "./ratecards-table-modal";
 import { days } from "../../utils/data";
 import { usePeople } from "../../context/people-context";
 import { isWeekdays } from "../../utils/helpers";
-import RatecardsTableModal from "./ratecards-table-modal";
 
 const RatecardsTableRow: React.FC = ({ person }: any) => {
   const { setShowRatecardsModal } = usePeople();
@@ -52,10 +50,6 @@ const RatecardsTableRow: React.FC = ({ person }: any) => {
           {person.currency}
         </td>
       </tr>
-      <RatecardsTableModal
-        //@ts-ignore
-        person={person}
-      />
     </>
   );
 };

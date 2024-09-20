@@ -23,3 +23,21 @@ export interface User {
   name: string;
   id: string;
 }
+
+export type StorageResponse = {
+  success: boolean;
+  value: any;
+  version?: any;
+};
+
+export type Response<T = StorageResponse> = {
+  data: T | any;
+  errorMessage?: string | undefined;
+  method: string;
+  requestId: string;
+  type?: string | undefined;
+};
+export interface RatecardCategories {
+  team: string[] | StorageResponse;
+  client: string[] | StorageResponse;
+}

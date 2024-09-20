@@ -1,13 +1,17 @@
 @import "../variables.scss";
 
+.teams__section-wrapper {
+  position: relative;
+  width: 130px;
+}
 .teams__container {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
   flex-basis: 15%;
   align-items: flex-start;
-  position: relative;
-  min-width: 200px;
+  position: fixed;
+  min-width: 180px;
 }
 .teams__type-cont {
   width: 100%;
@@ -16,20 +20,35 @@
   flex-grow: 1;
   flex-basis: 15%;
   align-items: flex-start;
-  position: fixed;
   &:nth-child(2) {
     top: 47.5%;
   }
 }
+.teams__title-cont {
+  @include flex();
+  width: 120px;
+  gap: 15px;
+}
+.teams__add-icon {
+  width: 15px;
+  height: 15px;
+  cursor: pointer;
+  padding: 2px 5px;
+  border-radius: 3px;
+  transition: all 0.2s ease-in-out;
+  &:hover {
+    background: var(--primary-background-hover-color);
+  }
+}
 .teams__list {
   list-style: none;
-  width: 150px;
-  margin-top: 60px;
-  position: fixed;
+  width: 120px;
+  margin-top: 15px;
+  text-transform: capitalize;
   & li {
-    margin-top: 30px;
-    font-size: 25px;
-    margin-left: 50px;
+    margin-top: 10px;
+    font-size: 15px;
+    margin-left: 30px;
     text-align: left;
     color: var(--secondary-text-color);
     transition: color 0.15s ease-in-out;
@@ -37,8 +56,8 @@
   }
 }
 .teams__divider {
-  height: 70vh;
+  height: 85vh;
+  margin-top: 30px;
   align-self: flex-end;
   position: fixed;
-  margin-right: 10px;
 }

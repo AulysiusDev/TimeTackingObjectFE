@@ -55,3 +55,15 @@ export function isWeekdays(days) {
     days.every((day, i) => day === weekdays[i])
   );
 }
+
+export const safeParse = (data) => {
+  try {
+    if (typeof data === "string") {
+      const parsedData = JSON.parse(data);
+      return parsedData;
+    }
+  } catch (error) {
+    return data;
+  }
+  return data;
+};

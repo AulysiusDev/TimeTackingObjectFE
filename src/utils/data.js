@@ -31,6 +31,10 @@ export const navlinks = [
     text: "Settings",
   },
 ];
+export const ratecardCategoriesObject = {
+  team: [],
+  client: [],
+};
 
 export const teams = [
   "All",
@@ -42,7 +46,13 @@ export const teams = [
   "IT",
 ];
 
-export const nonUserGroups = ["All"];
+export const clients = [
+  "All",
+  "Superawesome",
+  "HSBC",
+  "Deliveroo",
+  "Soho House",
+];
 
 export const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
