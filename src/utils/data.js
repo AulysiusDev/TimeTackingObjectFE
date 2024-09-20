@@ -1,3 +1,10 @@
+// Standard error message
+export const errorMessage =
+  "Please ensure you are using this application in an 'Object View' and reload the page. If this remains unresolved, please contact the developers.";
+
+export const mondayDataObj = {
+  users: [],
+};
 export const navlinks = [
   {
     href: "/",
@@ -12,8 +19,8 @@ export const navlinks = [
   //   text: "Automate",
   // },
   {
-    href: "/people",
-    text: "People",
+    href: "/ratecards",
+    text: "Ratecards",
   },
   {
     href: "/export",
@@ -34,6 +41,8 @@ export const teams = [
   "HR",
   "IT",
 ];
+
+export const nonUserGroups = ["All"];
 
 export const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 

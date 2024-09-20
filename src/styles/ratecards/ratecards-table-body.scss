@@ -1,0 +1,28 @@
+@import "../variables.scss";
+
+.ratecards-table-body__container {
+}
+.ratecards-table-body__row {
+  cursor: pointer;
+  transition: all 0.15s ease-in-out;
+  &:hover {
+    background: var(--ui-background-color);
+  }
+}
+.ratecards-table-body__field {
+  padding: 20px 10px 20px 10px;
+  height: 60px;
+  font-size: 20px;
+  text-align: left;
+  &:nth-child(1) {
+    // @include flex($d: column);
+    gap: 10px;
+    div {
+      @include flex($d: column);
+      align-items: flex-start;
+      gap: 10px;
+    }
+  }
+}
+.ratecards-table-body__user-field {
+}

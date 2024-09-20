@@ -1,0 +1,13 @@
+@import "../variables.scss";
+
+.ratecards-filters__container {
+  @include flex();
+  gap: 20px;
+  margin-left: 20px;
+}
+.ratecards-filters__search {
+  border-right: none !important;
+  border-left: none !important;
+  border-top: none !important;
+  border-radius: 0px !important;
+}

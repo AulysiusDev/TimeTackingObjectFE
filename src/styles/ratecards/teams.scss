@@ -1,0 +1,44 @@
+@import "../variables.scss";
+
+.teams__container {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 15%;
+  align-items: flex-start;
+  position: relative;
+  min-width: 200px;
+}
+.teams__type-cont {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  flex-basis: 15%;
+  align-items: flex-start;
+  position: fixed;
+  &:nth-child(2) {
+    top: 47.5%;
+  }
+}
+.teams__list {
+  list-style: none;
+  width: 150px;
+  margin-top: 60px;
+  position: fixed;
+  & li {
+    margin-top: 30px;
+    font-size: 25px;
+    margin-left: 50px;
+    text-align: left;
+    color: var(--secondary-text-color);
+    transition: color 0.15s ease-in-out;
+    cursor: pointer;
+  }
+}
+.teams__divider {
+  height: 70vh;
+  align-self: flex-end;
+  position: fixed;
+  margin-right: 10px;
+}

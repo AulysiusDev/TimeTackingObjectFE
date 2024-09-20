@@ -1,0 +1,22 @@
+@import "../variables.scss";
+
+.ratecards__container {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  flex-grow: 1;
+  width: 100%;
+  background-color: var(--primary-background-color);
+  margin-top: -5px;
+}
+.ratecards__top-cont {
+  width: 100%;
+  @include flex();
+  align-items: center;
+}
+.ratecards__content-cont {
+  display: flex;
+  width: 100%;
+  gap: 20px;
+  flex-grow: 1;
+}

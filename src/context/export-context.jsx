@@ -1,9 +1,6 @@
-import React, { createContext, useState, useEffect, useContext } from "react";
-import mondaySdk from "monday-sdk-js";
+import React, { createContext, useState, useContext } from "react";
 
 const ExportContext = createContext(null);
-const monday = mondaySdk();
-monday.setToken(process.env.MONDAY_API_TOKEN);
 
 export default function ExportContextProvider({ children }) {
   const [exportFormat, setExportFormat] = useState({

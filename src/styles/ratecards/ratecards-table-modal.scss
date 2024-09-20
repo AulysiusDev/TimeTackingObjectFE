@@ -1,0 +1,29 @@
+@import "../variables.scss";
+
+.ratecards-table-modal__content-cont {
+  width: 100%;
+  height: 100%;
+  @include flex($d: column);
+}
+.ratecards-table-modal__inputs-cont {
+  @include flex($d: column);
+  gap: 25px;
+  margin: 30px 0 10px;
+  width: 90%;
+  height: 100%;
+}
+.ratecards-table-modal__days-cont,
+.ratecards-table-modal__hours-cont {
+  @include flex();
+  justify-content: flex-start;
+  gap: 15px;
+}
+.ratecards-table-modal__hours-cont {
+  width: 90%;
+  justify-content: flex-start;
+  gap: 0;
+}
+.ratecards-table-modal__delete-cont {
+  width: 100%;
+  margin: 20px 0;
+}
