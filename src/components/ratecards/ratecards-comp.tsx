@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../../styles/ratecards/ratecards-comp.scss";
 import { Button } from "monday-ui-react-core";
 import { Add } from "monday-ui-react-core/icons";
@@ -6,9 +6,11 @@ import { usePeople } from "../../context/people-context.jsx";
 import RatecardsFilters from "./ratecards-filters";
 import RatecardsTableBody from "./ratecards-table-body";
 import RatecardsTableHead from "./ratecards-table-head";
+import { useTheme } from "../../context/theme-context";
 
 const RatecardsComp: React.FC = () => {
-  const { setShowAddRatecardsModal } = usePeople();
+  const { showRatecardsManageModal, setShowRatecardsManageModal } = useTheme();
+
   return (
     <section className="ratecards-comp__container">
       <div className="ratecards-comp__top-cont page-padding">
@@ -16,12 +18,12 @@ const RatecardsComp: React.FC = () => {
           {/* <PageTitle styles={{ alignSelf: "flex-start" }}>Ratecards</PageTitle> */}
           <RatecardsFilters />
           <Button
-            leftIcon={Add}
             className="ratecards-comp__button"
-            size={Button.sizes.MEDIUM}
-            onClick={() => setShowAddRatecardsModal(true)}
+            size={Button.sizes.XS}
+            kind={Button.kinds.TERTIARY}
+            onClick={() => setShowRatecardsManageModal(true)}
           >
-            New
+            Manage ratecards
           </Button>
         </div>
         <table style={{ width: "97.5%" }}>

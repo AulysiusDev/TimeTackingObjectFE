@@ -15,9 +15,9 @@ export interface MondayData {
   users: DropdownOption[];
 }
 export interface DropdownOption {
-  id: string;
+  id: number;
   label: string;
-  value: number;
+  value: string;
 }
 export interface User {
   name: string;
@@ -38,6 +38,33 @@ export type Response<T = StorageResponse> = {
   type?: string | undefined;
 };
 export interface RatecardCategories {
-  team: string[] | StorageResponse;
-  client: string[] | StorageResponse;
+  team: RatecardCategory | StorageResponse;
+  client: RatecardCategory | StorageResponse;
+}
+
+export interface RatecardCategory {
+  [key: string]: boolean;
+}
+
+export interface NewRatecard {
+  role: DropdownOption;
+  rate: string;
+  department: DropdownOption;
+  currency: DropdownOption;
+  startTime: DropdownOption;
+  endTime: DropdownOption;
+  days: number[];
+}
+
+export interface StoredRatecard {
+  id: number;
+  role: string;
+  rate: string | number;
+  department: string | null;
+  currency: string | null;
+  startTime: string | null;
+  endTime: string | null;
+  days: number[];
+  updatedBy: number;
+  updatedAt: string;
 }

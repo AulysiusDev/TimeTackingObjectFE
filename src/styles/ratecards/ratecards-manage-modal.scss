@@ -1,0 +1,181 @@
+@import "../variables.scss";
+
+// RateCardManageModal
+
+.ratecards-manage-modal-content__container {
+  @include flex($d: column);
+  height: 500px;
+}
+.ratecards-manage-modal-content__new-ratecard-cont,
+.ratecards-manage-modal-content__new-ratecards-cont {
+  @include flex($d: column);
+  width: 100%;
+  align-items: flex-start;
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+  }
+}
+.ratecards-manage-modal-content__new-ratecards-cont {
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.ratecards-manage-modal-content__ratecards_cont {
+  width: 100%;
+  height: 100%;
+  flex: 1;
+}
+.ratecards-manage-modal-content__roles-cont {
+  @include flex();
+  justify-content: flex-start;
+  width: 100%;
+  margin-top: 15px;
+}
+// Table
+
+.ratecards-manage-modal-content__ratecards_cont {
+  h2 {
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--primary-color);
+    margin: 7.5px 0;
+  }
+}
+
+.ratecards-manage-modal-content__table-cont {
+  table {
+    border-collapse: collapse;
+    width: 90%;
+  }
+  th {
+    background-color: transparent;
+    font-size: 12.5px;
+    font-weight: 500;
+    color: var(--secondary-text-color);
+    // @include flex();
+    text-align: left;
+  }
+  td {
+    font-size: 15px;
+    width: 120px;
+    &:nth-child(2) {
+      width: 75px;
+    }
+    &:nth-child(4) {
+      width: 75px;
+    }
+    &:nth-child(5) {
+      width: 75px;
+    }
+    &:nth-child(6) {
+      width: 75px;
+    }
+    &:nth-child(7) {
+      font-size: 11.5px;
+      width: 150px;
+    }
+  }
+}
+.ratecards-manage-modal-content__head-cont,
+.ratecards-manage-modal-content__body-cont {
+  border: none;
+}
+.ratecards-manage-modal-content__row-cont {
+  position: relative;
+}
+.ratecards-manage-modal-content__delete-icon {
+  color: var(--negative-color);
+  position: absolute;
+  right: 0%;
+  top: 20%;
+}
+
+// NewRateCardInputRow
+
+.new-ratecard-input-row__new-ratecard-container {
+  @include flex($d: column);
+  align-items: flex-start;
+  gap: 10px;
+}
+.new-ratecard-input-row__new-ratecard-cont {
+  @include flex();
+  width: 100%;
+  justify-content: flex-start;
+  gap: 5px;
+}
+.new-ratecard-input-row__input-cont {
+  @include flex($d: column);
+  align-items: flex-start;
+  padding: 2.5px;
+  margin: 5px 0 0;
+  label {
+    margin-left: 5px;
+    font-size: 12.5px;
+    color: var(--secondary-text-color);
+  }
+  input {
+    font-size: 12.5px;
+    min-height: 5px;
+    width: 100px;
+  }
+}
+.new-ratecard-input-row__dropdown {
+  width: 130px;
+}
+.new-ratecard-input-row__checkboxes-cont {
+  @include flex();
+}
+.new-ratecard-input-row__checkbox-cont {
+  @include flex($d: column);
+  width: 12px;
+  p {
+    text-align: center;
+    font-size: 7.5px;
+  }
+}
+.new-ratecard-input-row__checkbox {
+  width: 7.5px;
+  height: 7.5px;
+}
+
+// NewRatecardRow
+.new-ratecard-row__container {
+  @include flex();
+  div:nth-of-type(1) {
+    width: 140px;
+  }
+  div:nth-of-type(2) {
+    width: 60px;
+  }
+  div:nth-of-type(3) {
+    width: 130px;
+  }
+  div {
+    margin: 0 0 0 30px;
+  }
+}
+
+.new-ratecard-row__info-cont {
+  @include flex($d: column);
+  align-items: flex-start;
+  gap: 2.5px;
+  margin: 0 15px;
+  h2 {
+    font-size: 11.5px;
+    color: var(--secondary-text-color);
+  }
+  h3 {
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
+
+.new-ratecard-row__delete-icon {
+  color: var(--negative-color);
+  width: 15px;
+  height: 15px;
+}
+.close-icon {
+  color: var(--icon-color) !important;
+}

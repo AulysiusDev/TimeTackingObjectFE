@@ -67,3 +67,26 @@ export const safeParse = (data) => {
   }
   return data;
 };
+
+export const formatRatecards = (ratecards, userId) => {
+  return ratecards.map((ratecard) =>
+    Object.entries(ratecard).reduce(
+      (acc, [key, value]) => {
+        console.log({ key });
+        if (value && typeof value === "object" && "value" in value) {
+          if (key === "startTime" || key === "endTime") {
+            acc[key] = parseFloat(value.value);
+          } else {
+            acc[key] = value.value;
+          }
+        } else if (key === "rate") {
+          acc[key] = parseFloat(value);
+        } else {
+          acc[key] = value;
+        }
+        return acc;
+      },
+      { updatedBy: userId }
+    )
+  );
+};

@@ -2,8 +2,8 @@
 
 .ratecards-comp__container {
   @include flex($d: column);
-  flex-grow: 1;
-  flex-basis: 85%;
+  // flex-grow: 1;
+  flex-basis: 87%;
   position: relative;
 }
 .ratecards-comp__top-cont {
@@ -12,7 +12,6 @@
   align-items: center;
   width: 85%;
   position: fixed;
-  height: 125px;
   background-color: var(--fixed-light-color);
   z-index: 998;
   justify-content: space-between;

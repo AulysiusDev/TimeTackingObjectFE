@@ -26,10 +26,10 @@ export function useRatecardCategories() {
     try {
       const storedTeamsResponse: Response<StorageResponse> =
         await monday.storage.getItem("team");
-      console.log({ storedTeamsResponse });
       const storedClientsResponse: Response<StorageResponse> =
         await monday.storage.getItem("client");
-      console.log({ storedClientsResponse });
+      const storedRolesResponse: Response<StorageResponse> =
+        await monday.storage.getItem("role");
       // Process teams
       if (!storedTeamsResponse.data.success) {
         setRatecardCategoriesError(
@@ -38,7 +38,16 @@ export function useRatecardCategories() {
       } else {
         const parsedTeamsData = safeParse(storedTeamsResponse.data.value);
         const teamsData = Array.isArray(parsedTeamsData) ? parsedTeamsData : [];
-        setRatecardCategories((prev) => ({ ...prev, team: teamsData }));
+
+        const teamsObj = teamsData.reduce((acc, team) => {
+          acc[team] = false;
+          return acc;
+        }, {});
+
+        setRatecardCategories((prev) => ({
+          ...prev,
+          team: teamsObj,
+        }));
       }
 
       // Process clients
@@ -52,7 +61,32 @@ export function useRatecardCategories() {
         const clientsData = Array.isArray(parsedClientsData)
           ? parsedClientsData
           : [];
-        setRatecardCategories((prev) => ({ ...prev, client: clientsData }));
+        const clientObj = clientsData.reduce((acc, client) => {
+          acc[client] = false;
+          return acc;
+        }, {});
+        setRatecardCategories((prev) => ({
+          ...prev,
+          client: clientObj,
+        }));
+      }
+
+      // Process roles
+      if (!storedRolesResponse.data.success) {
+        setRatecardCategoriesError(
+          storedRolesResponse.data.error || "Uknown error fetching stored data"
+        );
+      } else {
+        const parsedRolesData = safeParse(storedRolesResponse.data.value);
+        const rolesData = Array.isArray(parsedRolesData) ? parsedRolesData : [];
+        const roleObj = rolesData.reduce((acc, role) => {
+          acc[role] = false;
+          return acc;
+        }, {});
+        setRatecardCategories((prev) => ({
+          ...prev,
+          role: roleObj,
+        }));
       }
     } catch (err) {
       setRatecardCategoriesError("An unexpected error occurred");

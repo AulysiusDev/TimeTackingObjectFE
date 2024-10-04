@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useCallback } from "react";
 import "../../styles/ratecards/ratecards-category-modal.scss";
 import { useTheme } from "../../context/theme-context";
-import { Delete, Add, CloseSmall } from "monday-ui-react-core/icons";
+import { Delete, Add, CloseSmall, Divider } from "monday-ui-react-core/icons";
 
 interface RatecardsCategoryModalContentProps {
   errorMessage: string;
@@ -46,9 +46,12 @@ const RatecardsCategoryModalContent: React.FC<
       }
     });
   }, []);
-  console.log({ deleteCategories });
   const handleClickUndo = useCallback((category: string) => {
     setDeleteCategories((prev) => prev.filter((cat) => cat !== category));
+  }, []);
+
+  const handleClearNewCategory = useCallback((newCategory: string) => {
+    setNewCategories((prev) => prev.filter((newCat) => newCat !== newCategory));
   }, []);
 
   return (
@@ -57,34 +60,44 @@ const RatecardsCategoryModalContent: React.FC<
         <h2 className="ratecards-category-modal__error">{errorMessage}</h2>
 
         <ul className="ratecards-category-modal__list">
-          {ratecardCategories[addRatecardCategory].map((category: string) => (
-            <li
-              className="ratecards-category-modal__list-item"
-              style={{
-                textDecoration: deleteCategories.includes(category)
-                  ? "line-through"
-                  : "",
-              }}
-            >
-              {category}
-              {!deleteCategories.includes(category) ? (
-                <Delete
-                  className="ratecards-category-modal__delete-icon"
-                  onClick={() => handleClickDelete(category)}
-                />
-              ) : (
-                <CloseSmall
-                  className="ratecards-category-modal__undo-icon"
-                  onClick={() => handleClickUndo(category)}
-                />
-              )}
-            </li>
-          ))}
+          {Object.keys(ratecardCategories[addRatecardCategory]).map(
+            (category: string, i) => (
+              <li
+                key={i}
+                className="ratecards-category-modal__list-item"
+                style={{
+                  textDecoration: deleteCategories.includes(category)
+                    ? "line-through"
+                    : "",
+                }}
+              >
+                {category}
+                {!deleteCategories.includes(category) ? (
+                  <Delete
+                    className="ratecards-category-modal__delete-icon icon"
+                    onClick={() => handleClickDelete(category)}
+                  />
+                ) : (
+                  <CloseSmall
+                    className="ratecards-category-modal__undo-icon icon"
+                    onClick={() => handleClickUndo(category)}
+                  />
+                )}
+              </li>
+            )
+          )}
         </ul>
+        {newCategories.length ? (
+          <Divider className="ratecards-category-modal__divider" />
+        ) : null}
         <ul className="ratecards-category-modal__list">
-          {newCategories.map((newCategory) => (
-            <li className="ratecards-category-modal__list-item">
+          {newCategories.map((newCategory, i) => (
+            <li className="ratecards-category-modal__new-list-item" key={i}>
               {newCategory}
+              <Delete
+                className="ratecards-category-modal__delete-icon icon"
+                onClick={() => handleClearNewCategory(newCategory)}
+              />
             </li>
           ))}
         </ul>

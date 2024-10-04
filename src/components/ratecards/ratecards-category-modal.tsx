@@ -2,7 +2,7 @@ import { Modal, ModalContent, ModalFooterButtons } from "monday-ui-react-core";
 import React, { useCallback, useState } from "react";
 import { useTheme } from "../../context/theme-context";
 import mondaySdk from "monday-sdk-js";
-import { Response, StorageResponse } from "../../types";
+import { RatecardCategories, Response, StorageResponse } from "../../types";
 import { safeParse } from "../../utils/helpers";
 import RatecardsCategoryModalContent from "./ratecards-category-modal-content";
 
@@ -41,8 +41,6 @@ const RatecardsCategoryModal: React.FC = () => {
         storedCategories.data.value
       );
       if (Array.isArray(categories)) {
-        console.log({ deleteCategories });
-        console.log({ newCategories });
         categories = [
           ...categories.filter((cat) => !deleteCategories.includes(cat)),
           ...newCategories,
@@ -50,7 +48,6 @@ const RatecardsCategoryModal: React.FC = () => {
       } else {
         categories = [...newCategories];
       }
-      console.log({ categories });
       const storeResponse = await monday.storage.setItem(
         addRatecardCategory,
         JSON.stringify(categories)
@@ -58,9 +55,13 @@ const RatecardsCategoryModal: React.FC = () => {
       if (storeResponse.errorMessage) {
         setErrorMessage(storeResponse.errorMessage);
       } else {
-        setRatecardCategories((prev: string[]) => ({
+        console.log({ categories });
+        setRatecardCategories((prev: RatecardCategories) => ({
           ...prev,
-          [addRatecardCategory]: categories,
+          [addRatecardCategory]: categories.reduce((acc, category) => {
+            acc[category] = false;
+            return acc;
+          }, {}),
         }));
       }
       setShowAddRatecardCategoryModal(false);
@@ -81,6 +82,7 @@ const RatecardsCategoryModal: React.FC = () => {
       onClose={handleOnClose}
       title={`Manage ${addRatecardCategory}s`}
       contentSpacing
+      zIndex={111111}
     >
       <ModalContent>
         <RatecardsCategoryModalContent

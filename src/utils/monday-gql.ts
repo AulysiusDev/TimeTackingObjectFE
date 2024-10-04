@@ -21,7 +21,6 @@ export const getAccountUsers = async () => {
       data: any;
       account_id: number;
     } = await monday.api(query);
-    console.log({ response });
     return response.data.users;
   } catch (error) {
     console.error(error);

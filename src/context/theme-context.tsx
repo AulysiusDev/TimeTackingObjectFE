@@ -4,6 +4,8 @@ import { AppFeatureObjectContext } from "monday-sdk-js/types/client-context.type
 import useLogs from "../hooks/logs-hook";
 import useMondayData from "../hooks/monday-data-hook";
 import { useRatecardCategories } from "../hooks/ratecard-categories-hook";
+import { NewRatecard, StoredRatecard } from "../types";
+import useStoredRatecards from "../hooks/stored-ratecards-hook";
 
 const ThemeContext = createContext(null);
 
@@ -11,7 +13,13 @@ export default function ThemeContextProvider({ children }) {
   const [addRatecardCategory, setAddRatecardCategory] = useState("team");
   const [showAddRatecardCategoryModal, setShowAddRatecardCategoryModal] =
     useState(false);
+  const [showRatecardsManageModal, setShowRatecardsManageModal] =
+    useState<boolean>(false);
   const context: AppFeatureObjectContext | null = useContextTheme();
+
+  const [newRatecards, setNewRatecards] = useState<NewRatecard[]>([]);
+
+  const [deleteRatecards, setDeleteRatecards] = useState<StoredRatecard[]>([]);
 
   // const { logs, setLogs } = useLogs(context);
   const mondayData = useMondayData();
@@ -22,6 +30,8 @@ export default function ThemeContextProvider({ children }) {
     ratecardCategoriesLoading,
     ratecardCategoriesError,
   } = useRatecardCategories();
+
+  const { storedRatecards, setStoredRatecards } = useStoredRatecards();
 
   return (
     <ThemeContext.Provider
@@ -36,6 +46,14 @@ export default function ThemeContextProvider({ children }) {
         setRatecardCategories,
         ratecardCategoriesLoading,
         ratecardCategoriesError,
+        showRatecardsManageModal,
+        setShowRatecardsManageModal,
+        newRatecards,
+        setNewRatecards,
+        storedRatecards,
+        setStoredRatecards,
+        deleteRatecards,
+        setDeleteRatecards,
       }}
     >
       {children}

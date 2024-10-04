@@ -3,6 +3,8 @@
 .teams__section-wrapper {
   position: relative;
   width: 130px;
+  background-color: var(--primary-background-color);
+  flex-basis: 13%;
 }
 .teams__container {
   display: flex;
@@ -60,4 +62,8 @@
   margin-top: 30px;
   align-self: flex-end;
   position: fixed;
+}
+.teams__showMore-cont {
+  width: 100%;
+  margin: 15px 0 5px 15px;
 }
