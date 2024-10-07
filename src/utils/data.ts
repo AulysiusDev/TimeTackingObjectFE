@@ -1,11 +1,26 @@
+// **Actual**
+
+import {
+  ButtonGroupOptions,
+  DropdownOption,
+  MondayData,
+  NewRatecard,
+  RatecardCategory,
+} from "../types";
+
 // Standard error message
-export const errorMessage =
+export const errorMessage: string =
   "Please ensure you are using this application in an 'Object View' and reload the page. If this remains unresolved, please contact the developers.";
 
-export const mondayDataObj = {
+export const mondayDataObj: MondayData = {
   users: [],
 };
-export const navlinks = [
+
+interface Navlinks {
+  href: string;
+  text: string;
+}
+export const navlinks: Navlinks[] = [
   {
     href: "/",
     text: "Entries",
@@ -32,7 +47,7 @@ export const navlinks = [
   },
 ];
 
-export const columns = [
+export const columns: string[] = [
   "Role",
   "Rate",
   "Department",
@@ -41,31 +56,20 @@ export const columns = [
   "End time",
   "Days",
 ];
-export const ratecardCategoriesObject = {
+
+interface RatecardCategoriesObject {
+  team: RatecardCategory[];
+  client: RatecardCategory[];
+  role: RatecardCategory[];
+}
+
+export const ratecardCategoriesObject: RatecardCategoriesObject = {
   team: [],
   client: [],
   role: [],
 };
 
-export const teams = [
-  "All",
-  "Finance",
-  "Marketing",
-  "Sales",
-  "Operations",
-  "HR",
-  "IT",
-];
-
-export const clients = [
-  "All",
-  "Superawesome",
-  "HSBC",
-  "Deliveroo",
-  "Soho House",
-];
-
-export const currencyOptions = [
+export const currencyOptions: DropdownOption[] = [
   { id: 1, label: "USD", value: "USD" },
   { id: 2, label: "EUR", value: "EUR" },
   { id: 4, label: "GBP", value: "GBP" },
@@ -89,9 +93,9 @@ export const currencyOptions = [
   { id: 21, label: "AED", value: "AED" },
 ];
 
-export const days = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const days: string[] = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
 
-export const newRatecardObj = {
+export const newRatecardObj: NewRatecard = {
   role: null,
   rate: null,
   department: null,
@@ -101,7 +105,7 @@ export const newRatecardObj = {
   days: [],
 };
 
-export const totalHoursOptions = [
+export const totalHoursOptions: ButtonGroupOptions[] = [
   {
     text: "Non-Billable",
     value: 2,
@@ -116,34 +120,7 @@ export const totalHoursOptions = [
   },
 ];
 
-export const hoursOptions = [
-  { value: "0", label: "00:00" },
-  { value: "1", label: "01:00" },
-  { value: "2", label: "02:00" },
-  { value: "3", label: "03:00" },
-  { value: "4", label: "04:00" },
-  { value: "5", label: "05:00" },
-  { value: "6", label: "06:00" },
-  { value: "7", label: "07:00" },
-  { value: "8", label: "08:00" },
-  { value: "9", label: "09:00" },
-  { value: "10", label: "10:00" },
-  { value: "11", label: "11:00" },
-  { value: "12", label: "12:00" },
-  { value: "13", label: "13:00" },
-  { value: "14", label: "14:00" },
-  { value: "15", label: "15:00" },
-  { value: "16", label: "16:00" },
-  { value: "17", label: "17:00" },
-  { value: "18", label: "18:00" },
-  { value: "19", label: "19:00" },
-  { value: "20", label: "20:00" },
-  { value: "21", label: "21:00" },
-  { value: "22", label: "22:00" },
-  { value: "23", label: "23:00" },
-  { value: "24", label: "24:00" },
-];
-export const startTimeOptions = [
+export const startTimeOptions: DropdownOption[] = [
   { id: 4, value: "7:00", label: "07:00" },
   { id: 5, value: "7:15", label: "07:15" },
   { id: 6, value: "7:30", label: "07:30" },
@@ -242,7 +219,7 @@ export const startTimeOptions = [
   { id: 3, value: "6:45", label: "06:45" },
 ];
 
-export const endTimeOptions = [
+export const endTimeOptions: DropdownOption[] = [
   { id: 40, value: "16:00", label: "16:00" },
   { id: 41, value: "16:15", label: "16:15" },
   { id: 42, value: "16:30", label: "16:30" },
@@ -341,6 +318,7 @@ export const endTimeOptions = [
   { id: 39, value: "15:45", label: "15:45" },
 ];
 
+// **Dummy data**
 export const peopleList = [
   {
     name: "Steven Jacobs",

@@ -1,6 +1,4 @@
 import React, { createContext, useState, useEffect, useContext } from "react";
-import { peopleList, teams } from "../utils/data.js";
-import { sortPeople } from "../utils/helpers.js";
 
 const PeopleContext = createContext(null);
 
@@ -11,10 +9,10 @@ export default function PeopleContextProvider({ children }) {
   const [showAddRatecardsModal, setShowAddRatecardsModal] = useState(false);
   const [people, setPeople] = useState([]);
 
-  useEffect(() => {
-    const sortedPeople = sortPeople(teams, peopleList);
-    setPeople(sortedPeople);
-  }, []);
+  // useEffect(() => {
+  //   const sortedPeople = sortPeople(teams, peopleList);
+  //   setPeople(sortedPeople);
+  // }, []);
 
   return (
     <PeopleContext.Provider
