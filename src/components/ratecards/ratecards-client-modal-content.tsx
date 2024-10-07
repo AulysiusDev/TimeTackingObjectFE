@@ -8,7 +8,7 @@ import { StoredRatecard } from "../../types";
 
 const RatecardsClientModalContent: React.FC = () => {
   const { storedRatecards } = useTheme();
-  console.log({ storedRatecards });
+
   return (
     <section className="ratecards-client-modal-content__container">
       <div className="ratecards-client-modal-content__ratecards-cont">
