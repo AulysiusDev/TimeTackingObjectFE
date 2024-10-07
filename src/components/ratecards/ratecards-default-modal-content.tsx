@@ -13,12 +13,12 @@ const RatecardsDefaultModalContent: React.FC = () => {
     newRatecards,
     storedRatecards,
     setRatecardCategory,
-    setShowratecardCategoryModal,
+    setShowRatecardCategoryModal,
   } = useTheme();
 
   const handleShowModal = useCallback(() => {
     setRatecardCategory("role");
-    setShowratecardCategoryModal(true);
+    setShowRatecardCategoryModal(true);
   }, []);
   if (!storedRatecards) {
     return null;
