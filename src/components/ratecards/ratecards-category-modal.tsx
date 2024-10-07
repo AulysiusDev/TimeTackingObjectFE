@@ -10,9 +10,9 @@ const monday = mondaySdk();
 
 const RatecardsCategoryModal: React.FC = () => {
   const {
-    showAddRatecardCategoryModal,
-    setShowAddRatecardCategoryModal,
-    addRatecardCategory,
+    showRatecardCategoryModal,
+    setShowRatecardCategoryModal,
+    ratecardCategory,
     setRatecardCategories,
   } = useTheme();
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,13 +24,13 @@ const RatecardsCategoryModal: React.FC = () => {
   const handleOnClose = useCallback(() => {
     setNewCategories([]);
     setNewRatecardCategory("");
-    setShowAddRatecardCategoryModal(false);
+    setShowRatecardCategoryModal(false);
     setDeleteCategories([]);
   }, []);
 
-  const handleAddRatecardCategory = useCallback(async () => {
+  const handleRatecardCategory = useCallback(async () => {
     const storedCategories: Response<StorageResponse> =
-      await monday.storage.getItem(addRatecardCategory);
+      await monday.storage.getItem(ratecardCategory);
     if (!storedCategories.data.success) {
       setErrorMessage(
         (storedCategories.data?.error as string) ||
@@ -49,7 +49,7 @@ const RatecardsCategoryModal: React.FC = () => {
         categories = [...newCategories];
       }
       const storeResponse = await monday.storage.setItem(
-        addRatecardCategory,
+        ratecardCategory,
         JSON.stringify(categories)
       );
       if (storeResponse.errorMessage) {
@@ -58,31 +58,27 @@ const RatecardsCategoryModal: React.FC = () => {
         console.log({ categories });
         setRatecardCategories((prev: RatecardCategories) => ({
           ...prev,
-          [addRatecardCategory]: categories.reduce((acc, category) => {
+          [ratecardCategory]: categories.reduce((acc, category) => {
             acc[category] = false;
             return acc;
           }, {}),
         }));
       }
-      setShowAddRatecardCategoryModal(false);
+      setShowRatecardCategoryModal(false);
       setNewRatecardCategory("");
       setNewCategories([]);
       setDeleteCategories([]);
     }
-  }, [
-    newRatecardCategory,
-    addRatecardCategory,
-    deleteCategories,
-    newCategories,
-  ]);
+  }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
 
   return (
     <Modal
-      show={showAddRatecardCategoryModal}
+      show={showRatecardCategoryModal}
       onClose={handleOnClose}
-      title={`Manage ${addRatecardCategory}s`}
+      title={`Manage ${ratecardCategory}s`}
       contentSpacing
       zIndex={111111}
+      unmountOnClose
     >
       <ModalContent>
         <RatecardsCategoryModalContent
@@ -96,7 +92,7 @@ const RatecardsCategoryModal: React.FC = () => {
         />
       </ModalContent>
       <ModalFooterButtons
-        onPrimaryButtonClick={handleAddRatecardCategory}
+        onPrimaryButtonClick={handleRatecardCategory}
         onSecondaryButtonClick={handleOnClose}
         primaryButtonText={`Save`}
         secondaryButtonText="Cancel"

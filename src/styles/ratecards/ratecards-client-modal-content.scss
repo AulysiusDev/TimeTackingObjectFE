@@ -1,0 +1,7 @@
+@import "../variables.scss";
+
+.ratecards-client-modal-content__container,
+.ratecards-client-modal-content__ratecards-cont {
+  @include flex($d: column);
+  width: 100%;
+}

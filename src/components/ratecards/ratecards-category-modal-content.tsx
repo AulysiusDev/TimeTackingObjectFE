@@ -24,7 +24,7 @@ const RatecardsCategoryModalContent: React.FC<
   deleteCategories,
   setDeleteCategories,
 }) => {
-  const { addRatecardCategory, ratecardCategories } = useTheme();
+  const { ratecardCategory, ratecardCategories } = useTheme();
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
     console.log(e);
@@ -60,7 +60,7 @@ const RatecardsCategoryModalContent: React.FC<
         <h2 className="ratecards-category-modal__error">{errorMessage}</h2>
 
         <ul className="ratecards-category-modal__list">
-          {Object.keys(ratecardCategories[addRatecardCategory]).map(
+          {Object.keys(ratecardCategories[ratecardCategory]).map(
             (category: string, i) => (
               <li
                 key={i}
@@ -112,7 +112,7 @@ const RatecardsCategoryModalContent: React.FC<
             className="ratecards-category-modal__add-text"
             onClick={handleClickAdd}
           >
-            Add {addRatecardCategory}{" "}
+            Add {ratecardCategory}{" "}
             <Add className="ratecards-category-modal__add-icon" />
           </h3>
         </div>

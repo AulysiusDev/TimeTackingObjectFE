@@ -6,31 +6,19 @@ import { useTheme } from "../../context/theme-context";
 import { NewRatecard, StoredRatecard } from "../../types";
 import { Button } from "monday-ui-react-core";
 import StoredRatecardRow from "./stored-ratecard-row";
+import { columns } from "../../utils/data";
 
-const columns = [
-  "Role",
-  "Rate",
-  "Department",
-  "Currency",
-  "Start time",
-  "End time",
-  "Days",
-];
-
-const RatecardsManageModalContent: React.FC = () => {
+const RatecardsDefaultModalContent: React.FC = () => {
   const {
     newRatecards,
-    setNewRatecards,
     storedRatecards,
-    setStoredRatecards,
-    addRatecardCategory,
-    setAddRatecardCategory,
-    setShowAddRatecardCategoryModal,
+    setRatecardCategory,
+    setShowratecardCategoryModal,
   } = useTheme();
 
   const handleShowModal = useCallback(() => {
-    setAddRatecardCategory("role");
-    setShowAddRatecardCategoryModal(true);
+    setRatecardCategory("role");
+    setShowratecardCategoryModal(true);
   }, []);
   if (!storedRatecards) {
     return null;
@@ -44,7 +32,7 @@ const RatecardsManageModalContent: React.FC = () => {
           <table>
             <thead>
               <tr>
-                {columns.map((column) => (
+                {columns.map((column: string) => (
                   <th
                     className="ratecards-manage-modal-content__head-cont"
                     key={column}
@@ -55,8 +43,10 @@ const RatecardsManageModalContent: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {storedRatecards.map((ratecard: StoredRatecard, i) => (
-                <StoredRatecardRow ratecard={ratecard} key={ratecard.id} />
+              {storedRatecards.map((ratecard: StoredRatecard) => (
+                <React.Fragment key={ratecard.id}>
+                  <StoredRatecardRow ratecard={ratecard} />
+                </React.Fragment>
               ))}
             </tbody>
           </table>
@@ -90,4 +80,4 @@ const RatecardsManageModalContent: React.FC = () => {
   );
 };
 
-export default RatecardsManageModalContent;
+export default RatecardsDefaultModalContent;

@@ -25,6 +25,13 @@
   &:nth-child(2) {
     top: 47.5%;
   }
+  span {
+    cursor: pointer;
+    transition: color 0.1s ease-in-out;
+    &:hover {
+      color: var(--primary-color);
+    }
+  }
 }
 .teams__title-cont {
   @include flex();

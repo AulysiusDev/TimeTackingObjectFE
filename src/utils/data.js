@@ -31,6 +31,16 @@ export const navlinks = [
     text: "Settings",
   },
 ];
+
+export const columns = [
+  "Role",
+  "Rate",
+  "Department",
+  "Currency",
+  "Start time",
+  "End time",
+  "Days",
+];
 export const ratecardCategoriesObject = {
   team: [],
   client: [],

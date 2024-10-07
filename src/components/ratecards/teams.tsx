@@ -1,17 +1,15 @@
 import React, { useCallback, useState } from "react";
 import "../../styles/ratecards/teams.scss";
-import { usePeople } from "../../context/people-context";
 import PageTitle from "../common/page-title";
-import { Button, Divider, IconButton } from "monday-ui-react-core";
+import { Button, Divider } from "monday-ui-react-core";
 import { Collapse, Menu, MoreActions } from "monday-ui-react-core/icons";
 import { useTheme } from "../../context/theme-context";
-import { RatecardCategories, RatecardCategory } from "../../types";
+import { RatecardCategories } from "../../types";
 
 const Teams: React.FC = () => {
-  const { team, setTeam, setClient, client } = usePeople();
   const {
-    setAddRatecardCategory,
-    setShowAddRatecardCategoryModal,
+    setRatecardCategory,
+    setShowRatecardCategoryModal,
     ratecardCategories,
     setRatecardCategories,
   } = useTheme();
@@ -22,8 +20,8 @@ const Teams: React.FC = () => {
   });
 
   const handleClickAdd = useCallback((category: string) => {
-    setAddRatecardCategory(category);
-    setShowAddRatecardCategoryModal(true);
+    setRatecardCategory(category);
+    setShowRatecardCategoryModal(true);
   }, []);
 
   const handleSelect = useCallback((value: string, category: string) => {
@@ -68,12 +66,44 @@ const Teams: React.FC = () => {
     }));
   }, []);
 
+  const handleClickAll = useCallback(
+    (objKey: string) => {
+      const newObject = Object.keys(ratecardCategories[objKey]).reduce(
+        (acc, key) => {
+          acc[key] = true;
+          return acc;
+        },
+        {}
+      );
+      let otherKey = "team";
+      if (objKey === "team") {
+        otherKey = "client";
+      }
+      const newOtherObject = Object.keys(ratecardCategories[otherKey]).reduce(
+        (acc, key) => {
+          acc[key] = false;
+          return acc;
+        },
+        {}
+      );
+
+      setRatecardCategories((prev: RatecardCategories) => ({
+        ...prev,
+        [objKey]: newObject,
+        [otherKey]: newOtherObject,
+      }));
+    },
+    [ratecardCategories]
+  );
+
   return (
     <div className="teams__section-wrapper">
       <section className="teams__container">
         <article className="teams__type-cont page-padding">
           <div className="teams__title-cont">
-            <PageTitle>Users</PageTitle>
+            <span onClick={() => handleClickAll("team")}>
+              <PageTitle>Users</PageTitle>
+            </span>
             <Menu
               className="teams__add-icon clickable"
               clickable
@@ -109,7 +139,9 @@ const Teams: React.FC = () => {
         </article>
         <article className="teams__type-cont page-padding">
           <div className="teams__title-cont">
-            <PageTitle>Clients</PageTitle>
+            <span onClick={() => handleClickAll("client")}>
+              <PageTitle>Clients</PageTitle>
+            </span>
             <Menu
               className="teams__add-icon"
               clickable

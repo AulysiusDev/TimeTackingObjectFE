@@ -19,7 +19,7 @@
 }
 .ratecards-comp__top-wrapper {
   @include flex();
-  justify-content: space-between;
+  // justify-content: space-between;
   width: 100%;
   gap: 20px;
 }

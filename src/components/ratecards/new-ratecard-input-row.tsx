@@ -178,7 +178,7 @@ const NewRatecardInputRow: React.FC = () => {
           <label>Days</label>
           <div className="new-ratecard-input-row__checkboxes-cont">
             {days.map((day: string, i: number) => (
-              <div className="new-ratecard-input-row__checkbox-cont">
+              <div className="new-ratecard-input-row__checkbox-cont" key={day}>
                 <p>{day.slice(0, 1)}</p>
                 <Checkbox
                   checkboxClassName="new-ratecard-input-row__checkbox"
