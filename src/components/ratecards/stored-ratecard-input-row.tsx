@@ -8,16 +8,25 @@ import {
   startTimeOptions,
   endTimeOptions,
 } from "../../utils/data";
-import { Dropdown } from "monday-ui-react-core";
+import { Checkbox, Dropdown } from "monday-ui-react-core";
 
 interface StoredRatecardInputRowProps {
   ratecard: StoredRatecard;
+}
+interface formattedRatecard {
+  role: string;
+  rate: number;
+  enTime: string;
+  startTime: string;
 }
 
 const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
   ratecard,
 }) => {
   const { ratecardCategories } = useTheme();
+  console.log({ ratecard });
+  console.log({ days });
+  const dayAbbreviations = days.map((day) => day.slice(0, 2));
   const formattedRatecard = useMemo(() => {
     return {
       role:
@@ -31,10 +40,12 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
       currency: ratecard.currency && ratecard.currency.toUpperCase(),
       startTime: ratecard.startTime,
       endTime: ratecard.endTime,
-      days: ratecard.days.map((day, i) => days[i].slice(0, 2)).join(",  "),
+      days: !ratecard.days.length
+        ? []
+        : ratecard.days.map((day, i) => dayAbbreviations[i]).join(",  "),
     };
   }, [ratecard]);
-
+  console.log({ formattedRatecard });
   const processedDeapartmentsOptions: DropdownOption[] = useMemo(() => {
     if (!ratecardCategories || !ratecardCategories.team) return [];
     return Object.keys(ratecardCategories.team).map(
@@ -47,7 +58,6 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
       }
     );
   }, [ratecardCategories]);
-
   const processedRolesOptions: DropdownOption[] = useMemo(() => {
     if (!ratecardCategories || !ratecardCategories.role) return [];
     return Object.keys(ratecardCategories.role).map(
@@ -69,10 +79,16 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
     endTime: endTimeOptions,
   };
   console.log({ options });
+  console.log({ dayAbbreviations });
   return (
     <tr className="ratecards-manage-modal-content__row-cont">
       {Object.entries(formattedRatecard).map(([key, value], i) => {
         console.log({ value });
+        console.log(
+          key === "days" && typeof value === "string"
+            ? value.replace(/\s/g, "").split(",")
+            : null
+        );
         return (
           <td key={i} className="ratecards-manage-modal-content__body-cont">
             {key === "rate" ? (
@@ -86,23 +102,43 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
               </div>
             ) : key !== "days" ? (
               <div className="new-ratecard-input-row__input-cont">
-                <Dropdown
-                  className="new-ratecard-input-row__dropdown"
-                  size={Dropdown.sizes.SMALL}
-                  options={options[key]}
-                  defaultValue={
-                    options[key].find(
-                      (obj: DropdownOption) => obj.label === value
-                    ) || {}
-                  }
-                  //   onChange={(e: DropdownOption) =>
-                  //     handleDropdownInputChange(e, "department")
-                  //   }
-                  //   value={newRatecard.department}
-                  menuPosition={Dropdown.menuPositions.FIXED}
-                />
+                {value ? (
+                  <Dropdown
+                    className="new-ratecard-input-row__dropdown"
+                    size={Dropdown.sizes.SMALL}
+                    options={options[key]}
+                    defaultValue={
+                      options[key].find(
+                        (obj: DropdownOption) =>
+                          obj.label == value || obj.value == value
+                      ) || null
+                    }
+                    menuPosition={Dropdown.menuPositions.FIXED}
+                  />
+                ) : null}
               </div>
-            ) : null}
+            ) : (
+              <div className="new-ratecard-input-row__checkboxes-cont">
+                {days.map((day: string, i: number) => (
+                  <div
+                    className="new-ratecard-input-row__checkbox-cont"
+                    key={day}
+                  >
+                    <p>{day.slice(0, 1)}</p>
+                    <Checkbox
+                      checkboxClassName="new-ratecard-input-row__checkbox"
+                      checked={
+                        typeof value === "string" &&
+                        value
+                          .replace(/\s/g, "")
+                          .split(",")
+                          .includes(dayAbbreviations[i])
+                      }
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
           </td>
         );
       })}

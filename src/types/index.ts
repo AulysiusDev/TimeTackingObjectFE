@@ -17,7 +17,7 @@ export interface MondayData {
 export interface DropdownOption {
   id: number;
   label: string;
-  value: string;
+  value: string | number;
 }
 export interface User {
   name: string;
