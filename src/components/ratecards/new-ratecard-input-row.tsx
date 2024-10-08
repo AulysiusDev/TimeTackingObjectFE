@@ -11,41 +11,23 @@ import {
   newRatecardObj,
 } from "../../utils/data";
 import toast from "react-hot-toast";
+import { processDropdownOptions } from "../../utils/helpers";
 
 const NewRatecardInputRow: React.FC = () => {
-  const { ratecardCategories, newRatecards, setNewRatecards } = useTheme();
+  const { ratecardCategories, setNewRatecards } = useTheme();
 
   const [newRatecard, setNewRatecard] = useState<NewRatecard>(newRatecardObj);
 
   const processedDeapartmentsOptions: DropdownOption[] = useMemo(() => {
-    if (!ratecardCategories || !ratecardCategories.team) return [];
-    return Object.keys(ratecardCategories.team).map(
-      (department: string, i: number) => {
-        return {
-          id: i,
-          label: department.slice(0, 1).toUpperCase() + department.slice(1),
-          value: department,
-        };
-      }
-    );
+    return processDropdownOptions(Object.keys(ratecardCategories.team))
   }, [ratecardCategories]);
 
   const processedRolesOptions: DropdownOption[] = useMemo(() => {
-    if (!ratecardCategories || !ratecardCategories.role) return [];
-    return Object.keys(ratecardCategories.role).map(
-      (role: string, i: number) => {
-        return {
-          id: i,
-          label: role.slice(0, 1).toUpperCase() + role.slice(1),
-          value: role,
-        };
-      }
-    );
+    return processDropdownOptions(Object.keys(ratecardCategories.role))
   }, [ratecardCategories]);
 
   const handleTextInputChange = useCallback(
     (e: React.ChangeEvent<HTMLInputElement>, key: string) => {
-      console.log(e.target.value);
       setNewRatecard((prev: NewRatecard) => ({
         ...prev,
         [key]: e.target.value,
@@ -56,7 +38,6 @@ const NewRatecardInputRow: React.FC = () => {
 
   const handleDropdownInputChange = useCallback(
     (e: DropdownOption, key: string) => {
-      console.log({ e });
       setNewRatecard((prev: NewRatecard) => ({
         ...prev,
         [key]: e || "",

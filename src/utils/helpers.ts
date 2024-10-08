@@ -34,6 +34,22 @@ export function formatDate(date: Date) {
   return date.toLocaleDateString("en-GB", options).replace(",", "");
 }
 
+export const processDropdownOptions = (options: string[]) => {
+  if(!options || (Array.isArray(options) && !options.length) || !Array.isArray(options)){
+    return []
+  }else{
+    return options.map(
+      (options: string, i: number) => {
+        return {
+          id: i,
+          label: options.slice(0, 1).toUpperCase() + options.slice(1),
+          value: options,
+        };
+      }
+    );
+  }
+}
+
 // export function sortPeople(departments: string[], people) {
 //   const filteredDepartments = departments.filter(
 //     (dep) => dep !== "All" && dep !== "all"

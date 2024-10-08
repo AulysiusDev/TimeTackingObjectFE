@@ -1,7 +1,7 @@
 import React, { useCallback, useMemo } from "react";
 import { DropdownOption, StoredRatecard } from "../../types";
 import { useTheme } from "../../context/theme-context";
-import { CloseSmall, Delete } from "monday-ui-react-core/icons";
+import {Check, CloseSmall, Delete } from "monday-ui-react-core/icons";
 import {
   days,
   currencyOptions,
@@ -9,6 +9,8 @@ import {
   endTimeOptions,
 } from "../../utils/data";
 import { Checkbox, Dropdown } from "monday-ui-react-core";
+import "../../styles/ratecards/ratecards-client-modal-content.scss"
+import { processDropdownOptions } from "../../utils/helpers";
 
 interface StoredRatecardInputRowProps {
   ratecard: StoredRatecard;
@@ -24,8 +26,6 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
   ratecard,
 }) => {
   const { ratecardCategories } = useTheme();
-  console.log({ ratecard });
-  console.log({ days });
   const dayAbbreviations = days.map((day) => day.slice(0, 2));
   const formattedRatecard = useMemo(() => {
     return {
@@ -33,6 +33,7 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
         ratecard.role &&
         ratecard.role.slice(0, 1).toUpperCase() + ratecard.role.slice(1),
       rate: ratecard.rate,
+      user: null,
       department:
         ratecard.department &&
         ratecard.department.slice(0, 1).toUpperCase() +
@@ -45,52 +46,35 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
         : ratecard.days.map((day, i) => dayAbbreviations[i]).join(",  "),
     };
   }, [ratecard]);
-  console.log({ formattedRatecard });
+
   const processedDeapartmentsOptions: DropdownOption[] = useMemo(() => {
-    if (!ratecardCategories || !ratecardCategories.team) return [];
-    return Object.keys(ratecardCategories.team).map(
-      (department: string, i: number) => {
-        return {
-          id: i,
-          label: department.slice(0, 1).toUpperCase() + department.slice(1),
-          value: department,
-        };
-      }
-    );
+    return processDropdownOptions(Object.keys(ratecardCategories.team))
   }, [ratecardCategories]);
+
   const processedRolesOptions: DropdownOption[] = useMemo(() => {
-    if (!ratecardCategories || !ratecardCategories.role) return [];
-    return Object.keys(ratecardCategories.role).map(
-      (role: string, i: number) => {
-        return {
-          id: i,
-          label: role.slice(0, 1).toUpperCase() + role.slice(1),
-          value: role,
-        };
-      }
-    );
+    return processDropdownOptions(Object.keys(ratecardCategories.role))
   }, [ratecardCategories]);
 
   const options = {
     role: processedRolesOptions,
     department: processedDeapartmentsOptions,
+    // User options will be all the users related to that ratecrad in the UserRatecardTable
+    user: [],
     currency: currencyOptions,
     startTime: startTimeOptions,
     endTime: endTimeOptions,
   };
-  console.log({ options });
-  console.log({ dayAbbreviations });
   return (
-    <tr className="ratecards-manage-modal-content__row-cont">
+    <tr className="ratecards-client-modal-content__row-cont">
       {Object.entries(formattedRatecard).map(([key, value], i) => {
-        console.log({ value });
-        console.log(
-          key === "days" && typeof value === "string"
-            ? value.replace(/\s/g, "").split(",")
-            : null
-        );
-        return (
-          <td key={i} className="ratecards-manage-modal-content__body-cont">
+        return (<>
+          {i === 0 ? 
+  <td className="ratecards-client-modal-content__body-cont">
+  <Check className="icon" color="var(--positive-color)"/>
+  </td>
+    : null       
+          }
+          <td key={i} className="ratecards-client-modal-content__body-cont">
             {key === "rate" ? (
               <div className="new-ratecard-input-row__input-cont">
                 <input
@@ -100,9 +84,9 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
                   defaultValue={value}
                 />
               </div>
-            ) : key !== "days" ? (
+            ) : 
+            key !== "days" && key !== "department" ? (
               <div className="new-ratecard-input-row__input-cont">
-                {value ? (
                   <Dropdown
                     className="new-ratecard-input-row__dropdown"
                     size={Dropdown.sizes.SMALL}
@@ -115,10 +99,16 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
                     }
                     menuPosition={Dropdown.menuPositions.FIXED}
                   />
-                ) : null}
               </div>
-            ) : (
-              <div className="new-ratecard-input-row__checkboxes-cont">
+            ) : key === "department" ? 
+          
+              <div className="ratecards-client-modal-content__department-cont">
+                <h3>{value}</h3>
+              </div> :
+
+             
+            (
+              <div className="ratecards-client-modal-content__checkboxes-cont">
                 {days.map((day: string, i: number) => (
                   <div
                     className="new-ratecard-input-row__checkbox-cont"
@@ -140,6 +130,7 @@ const StoredRatecardInputRow: React.FC<StoredRatecardInputRowProps> = ({
               </div>
             )}
           </td>
+          </>
         );
       })}
     </tr>

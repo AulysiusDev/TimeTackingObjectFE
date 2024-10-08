@@ -30,6 +30,11 @@ export type StorageResponse = {
   version?: any;
 };
 
+export interface ClientDetails{
+  selected: string | null;
+  showEdit: boolean
+}
+
 export interface ButtonGroupOptions {
   text: string;
   value: number;

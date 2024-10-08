@@ -47,9 +47,31 @@ export const navlinks: Navlinks[] = [
   },
 ];
 
+export const clientRatecardColumns: string[] = [
+  "Company name",
+ "Industry",
+  "Rate",
+  "Currency",
+  "Languages",
+  "Location",
+  "Timezone offset"
+]
+
 export const columns: string[] = [
   "Role",
   "Rate",
+  "Department",
+  "Currency",
+  "Start time",
+  "End time",
+  "Days",
+];
+
+export const addColumns: string[] = [
+  "Add",
+  "Role",
+  "Rate",
+  "User",
   "Department",
   "Currency",
   "Start time",
@@ -318,7 +340,60 @@ export const endTimeOptions: DropdownOption[] = [
   { id: 39, value: 15.45, label: "15:45" },
 ];
 
+export const clientDetailsObj = {
+  selected: null,
+  showEdit: false,
+}
+export const langaugeOptions = [
+  "ENG",  // English
+  "GER",  // German
+  "FRE",  // French
+  "SPA",  // Spanish
+  "ARB",  // Arabic
+  "CHN",  // Chinese (Mandarin)
+  "ITA",  // Italian
+  "RUS",  // Russian
+  "DUT",  // Dutch
+  "POR",  // Portuguese
+  "SWE",  // Swedish
+  "POL",  // Polish
+  "NOR",  // Norwegian
+  "DAN",  // Danish
+  "FIN",  // Finnish
+  "HUN",  // Hungarian
+  "CZE",  // Czech
+  "ROM",  // Romanian
+  "SLK",  // Slovak
+  "BUL",  // Bulgarian
+  "GRE",  // Greek
+  "EST",  // Estonian
+  "HIN",  // Hindi
+  "BEN",  // Bengali
+  "JPN",  // Japanese
+  "KOR",  // Korean
+  "VIE",  // Vietnamese
+  "TAM",  // Tamil
+  "MAR",  // Marathi
+  "TEL",  // Telugu
+  "IND",  // Indonesian
+  "THA",  // Thai
+  "TUR"   // Turkish
+];
+
+
 // **Dummy data**
+
+
+export const clientRatecard = {
+  id: 1,
+  name: "Superawesome",
+  industry: "fashion",
+  rate: 150,
+  currency: "GBP",
+  languages: ["ENG", "GER"],
+  location: "Cologne",
+  timezoneOffset: 1
+}
 export const peopleList = [
   {
     name: "Steven Jacobs",

@@ -69,12 +69,10 @@ const RatecardsManageModal: React.FC = () => {
   return (
     <Modal
       show={showRatecardsManageModal}
-      className="ratecards-manage-modal__container"
-      width={"1024px"}
+      width={"1100px"}
       title={`Manage ${manageRatecardCategory} ratecards`}
       onClose={handleClose}
       contentSpacing
-      unmountOnClose
     >
       <ModalContent>
         {manageRatecardCategory === "default" ? (

@@ -5,3 +5,78 @@
   @include flex($d: column);
   width: 100%;
 }
+// Client ratecard
+
+.ratecards-client-modal-content__client-ratecard-cont{
+  @include flex($d:column);
+  align-items: flex-start;
+  width: 100%;
+  gap: 10px;
+
+}
+.ratecards-client-modal-content__client-dropdown-wrapper{
+  @include flex();  
+  gap: 30px;
+  color: var(--icon-color);
+}
+.ratecards-client-modal-content__client-dropdown{
+  width: 175px;
+}
+
+// Client details table
+
+.client-details-table__container{
+  @include flex($d: column);
+  width: 100%;
+  align-items: flex-start;
+  table {
+    width: 90%;
+    th{
+      border: none;
+      background-color: transparent;
+      font-weight: 500;
+      color: var(--secondary-text-color);
+      font-size: 12.5px;
+      text-align: left;
+    }
+    td{
+      border: none;
+text-align: left;
+text-transform: capitalize;
+font-size: 14px;
+padding-top: 0px;
+    }
+  }
+}
+
+.client-details-table__input-cont{
+  @include flex();
+  justify-content: flex-start;
+}
+.client-details-table__dropdown{
+  width: 150px !important;
+
+}
+.client-details-table__text-input{
+  max-width: 100px !important;
+}
+.timezone-offset-input{
+  width: 50px;
+}
+
+// Default ratecard table
+.ratecards-client-modal-content__body-cont{
+  padding: 2.5px;
+  border: none;
+}
+.ratecards-client-modal-content__checkboxes-cont{
+  @include flex();
+  margin-left: 7.5px;
+}
+.ratecards-client-modal-content__department-cont{
+  @include flex-center();
+  h3{
+    font-size: 15px;
+    font-weight: 500;
+  }
+}
