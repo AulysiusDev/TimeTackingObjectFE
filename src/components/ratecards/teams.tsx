@@ -56,15 +56,18 @@ const Teams: React.FC = () => {
     });
   }, []);
 
-  const handleShowMore = useCallback((category: string) => {
-    setShowMore((prev) => ({
-      ...prev,
-      [category]:
-        prev[category] === 8
-          ? Object.keys(ratecardCategories[category]).length
-          : 8,
-    }));
-  }, []);
+  const handleShowMore = useCallback(
+    (category: string) => {
+      setShowMore((prev) => ({
+        ...prev,
+        [category]:
+          prev[category] === 8
+            ? Object.keys(ratecardCategories[category]).length
+            : 8,
+      }));
+    },
+    [ratecardCategories]
+  );
 
   const handleClickAll = useCallback(
     (objKey: string) => {

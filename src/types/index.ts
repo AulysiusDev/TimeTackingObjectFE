@@ -17,7 +17,7 @@ export interface MondayData {
 export interface DropdownOption {
   id: number;
   label: string;
-  value: string;
+  value: string | number;
 }
 export interface User {
   name: string;
@@ -30,6 +30,11 @@ export type StorageResponse = {
   version?: any;
 };
 
+export interface ButtonGroupOptions {
+  text: string;
+  value: number;
+}
+
 export type Response<T = StorageResponse> = {
   data: T | any;
   errorMessage?: string | undefined;
@@ -40,6 +45,7 @@ export type Response<T = StorageResponse> = {
 export interface RatecardCategories {
   team: RatecardCategory | StorageResponse;
   client: RatecardCategory | StorageResponse;
+  role: RatecardCategory | StorageResponse;
 }
 
 export interface RatecardCategory {

@@ -66,7 +66,6 @@ const RatecardsManageModal: React.FC = () => {
     }
     setShowRatecardsManageModal(false);
   }, [newRatecards, deleteRatecards]);
-  console.log({ manageRatecardCategory });
   return (
     <Modal
       show={showRatecardsManageModal}

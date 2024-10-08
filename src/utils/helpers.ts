@@ -1,4 +1,6 @@
-export function changeTheme(theme) {
+import { NewRatecard } from "../types";
+
+export function changeTheme(theme: string) {
   if (theme === "dark") {
     document.querySelector("body").setAttribute("data-theme", "dark");
     return "dark";
@@ -11,7 +13,7 @@ export function changeTheme(theme) {
   }
 }
 
-export function createDatesArray(startDate, endDate) {
+export function createDatesArray(startDate: Date, endDate: Date) {
   const datesArray = [];
   let currentDate = new Date(startDate);
 
@@ -23,32 +25,37 @@ export function createDatesArray(startDate, endDate) {
   return datesArray;
 }
 
-export function formatDate(date) {
-  const options = { day: "2-digit", month: "short", year: "2-digit" };
+export function formatDate(date: Date) {
+  const options: Intl.DateTimeFormatOptions = {
+    day: "2-digit",
+    month: "short",
+    year: "2-digit",
+  };
   return date.toLocaleDateString("en-GB", options).replace(",", "");
 }
 
-export function sortPeople(departments, people) {
-  const filteredDepartments = departments.filter(
-    (dep) => dep !== "All" && dep !== "all"
-  );
-  const departmentsOrderMap = new Map();
-  filteredDepartments.forEach((department, i) =>
-    departmentsOrderMap.set(department, i)
-  );
-  const sortedPeople = people.sort((a, b) => {
-    const aOrder = departmentsOrderMap.get(a.team);
-    const bOrder = departmentsOrderMap.get(b.team);
+// export function sortPeople(departments: string[], people) {
+//   const filteredDepartments = departments.filter(
+//     (dep) => dep !== "All" && dep !== "all"
+//   );
+//   const departmentsOrderMap = new Map();
+//   filteredDepartments.forEach((department, i) =>
+//     departmentsOrderMap.set(department, i)
+//   );
+//   const sortedPeople = people.sort((a, b) => {
+//     const aOrder = departmentsOrderMap.get(a.team);
+//     const bOrder = departmentsOrderMap.get(b.team);
 
-    if (aOrder === undefined && bOrder === undefined) return 0;
-    if (aOrder === undefined) return 1;
-    if (bOrder === undefined) return -1;
+//     if (aOrder === undefined && bOrder === undefined) return 0;
+//     if (aOrder === undefined) return 1;
+//     if (bOrder === undefined) return -1;
 
-    return aOrder - bOrder;
-  });
-  return sortedPeople;
-}
-export function isWeekdays(days) {
+//     return aOrder - bOrder;
+//   });
+//   return sortedPeople;
+// }
+
+export function isWeekdays(days: number[]) {
   const weekdays = [1, 2, 3, 4, 5];
   return (
     days.length === weekdays.length &&
@@ -56,7 +63,7 @@ export function isWeekdays(days) {
   );
 }
 
-export const safeParse = (data) => {
+export const safeParse = (data: any) => {
   try {
     if (typeof data === "string") {
       const parsedData = JSON.parse(data);
@@ -68,14 +75,14 @@ export const safeParse = (data) => {
   return data;
 };
 
-export const formatRatecards = (ratecards, userId) => {
+export const formatRatecards = (ratecards: NewRatecard[], userId) => {
   return ratecards.map((ratecard) =>
     Object.entries(ratecard).reduce(
       (acc, [key, value]) => {
         console.log({ key });
         if (value && typeof value === "object" && "value" in value) {
           if (key === "startTime" || key === "endTime") {
-            acc[key] = parseFloat(value.value);
+            acc[key] = value.value;
           } else {
             acc[key] = value.value;
           }
@@ -90,3 +97,11 @@ export const formatRatecards = (ratecards, userId) => {
     )
   );
 };
+
+// const formatStringTime = (string: string) => {
+//   return parseFloat(string.split(":").join("."));
+// };
+
+// export const formatToStringTime = (string: string) => {
+//   return string.split(".").join(":");
+// };

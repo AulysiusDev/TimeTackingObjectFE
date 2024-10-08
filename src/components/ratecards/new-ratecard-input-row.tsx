@@ -56,6 +56,7 @@ const NewRatecardInputRow: React.FC = () => {
 
   const handleDropdownInputChange = useCallback(
     (e: DropdownOption, key: string) => {
+      console.log({ e });
       setNewRatecard((prev: NewRatecard) => ({
         ...prev,
         [key]: e || "",
