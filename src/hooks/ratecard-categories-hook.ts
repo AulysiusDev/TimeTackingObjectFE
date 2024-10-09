@@ -20,74 +20,108 @@ export function useRatecardCategories() {
     string | null
   >(null);
 
+  const processStoredData = async (key: string ) => {
+    const storedDataResponse: Response<StorageResponse> =
+    await monday.storage.getItem(key);
+    if (!storedDataResponse.data.success) {
+      setRatecardCategoriesError(
+        storedDataResponse.data.error || "Uknown error fetching stored data"
+      );
+    } else {
+      const parsedStoredData = safeParse(storedDataResponse.data.value);
+      const storedData = Array.isArray(parsedStoredData) ? parsedStoredData : [];
+  
+      const dataObj = storedData.reduce((acc, team) => {
+        acc[team] = false;
+        return acc;
+      }, {});
+  
+      setRatecardCategories((prev) => ({
+        ...prev,
+        [key]: {
+         value: dataObj,
+         version: storedDataResponse.data.version
+        }
+      }));
+    }
+  }
+
   const fetchStoredData = useCallback(async () => {
     setRatecardCategoriesLoading(true);
     setRatecardCategoriesError(null);
     try {
-      const storedTeamsResponse: Response<StorageResponse> =
-        await monday.storage.getItem("team");
-      const storedClientsResponse: Response<StorageResponse> =
-        await monday.storage.getItem("client");
-      const storedRolesResponse: Response<StorageResponse> =
-        await monday.storage.getItem("role");
-      // Process teams
-      if (!storedTeamsResponse.data.success) {
-        setRatecardCategoriesError(
-          storedTeamsResponse.data.error || "Uknown error fetching stored data"
-        );
-      } else {
-        const parsedTeamsData = safeParse(storedTeamsResponse.data.value);
-        const teamsData = Array.isArray(parsedTeamsData) ? parsedTeamsData : [];
+      const keys = ["team", "client", "role"]
 
-        const teamsObj = teamsData.reduce((acc, team) => {
-          acc[team] = false;
-          return acc;
-        }, {});
-
-        setRatecardCategories((prev) => ({
-          ...prev,
-          team: teamsObj,
-        }));
+      for(const key of keys){
+        await processStoredData(key)
       }
+      // const storedTeamsResponse: Response<StorageResponse> =
+      //   await monday.storage.getItem("team");
+      // const storedClientsResponse: Response<StorageResponse> =
+      //   await monday.storage.getItem("client");
+      // const storedRolesResponse: Response<StorageResponse> =
+      //   await monday.storage.getItem("role");
+      // // Process teams
+      // if (!storedTeamsResponse.data.success) {
+      //   setRatecardCategoriesError(
+      //     storedTeamsResponse.data.error || "Uknown error fetching stored data"
+      //   );
+      // } else {
+      //   const parsedTeamsData = safeParse(storedTeamsResponse.data.value);
+      //   const teamsData = Array.isArray(parsedTeamsData) ? parsedTeamsData : [];
 
-      // Process clients
-      if (!storedClientsResponse.data.success) {
-        setRatecardCategoriesError(
-          storedClientsResponse.data.error ||
-            "Uknown error fetching stored data"
-        );
-      } else {
-        const parsedClientsData = safeParse(storedClientsResponse.data.value);
-        const clientsData = Array.isArray(parsedClientsData)
-          ? parsedClientsData
-          : [];
-        const clientObj = clientsData.reduce((acc, client) => {
-          acc[client] = false;
-          return acc;
-        }, {});
-        setRatecardCategories((prev) => ({
-          ...prev,
-          client: clientObj,
-        }));
-      }
+      //   const teamsObj = teamsData.reduce((acc, team) => {
+      //     acc[team] = false;
+      //     return acc;
+      //   }, {});
 
-      // Process roles
-      if (!storedRolesResponse.data.success) {
-        setRatecardCategoriesError(
-          storedRolesResponse.data.error || "Uknown error fetching stored data"
-        );
-      } else {
-        const parsedRolesData = safeParse(storedRolesResponse.data.value);
-        const rolesData = Array.isArray(parsedRolesData) ? parsedRolesData : [];
-        const roleObj = rolesData.reduce((acc, role) => {
-          acc[role] = false;
-          return acc;
-        }, {});
-        setRatecardCategories((prev) => ({
-          ...prev,
-          role: roleObj,
-        }));
-      }
+      //   setRatecardCategories((prev) => ({
+      //     ...prev,
+      //     team: {
+      //      value: teamsObj,
+      //      version: storedTeamsResponse.data.version
+      //     }
+      //   }));
+      // }
+
+      // // Process clients
+      // if (!storedClientsResponse.data.success) {
+      //   setRatecardCategoriesError(
+      //     storedClientsResponse.data.error ||
+      //       "Uknown error fetching stored data"
+      //   );
+      // } else {
+      //   const parsedClientsData = safeParse(storedClientsResponse.data.value);
+      //   const clientsData = Array.isArray(parsedClientsData)
+      //     ? parsedClientsData
+      //     : [];
+      //   const clientObj = clientsData.reduce((acc, client) => {
+      //     acc[client] = false;
+      //     return acc;
+      //   }, {});
+      //   setRatecardCategories((prev) => ({
+      //     ...prev,
+      //     client: clientObj,
+      //   }));
+      // }
+
+      // // Process roles
+      // if (!storedRolesResponse.data.success) {
+      //   setRatecardCategoriesError(
+      //     storedRolesResponse.data.error || "Uknown error fetching stored data"
+      //   );
+      // } else {
+      //   const parsedRolesData = safeParse(storedRolesResponse.data.value);
+      //   const rolesData = Array.isArray(parsedRolesData) ? parsedRolesData : [];
+      //   const roleObj = rolesData.reduce((acc, role) => {
+      //     acc[role] = false;
+      //     return acc;
+      //   }, {});
+      //   setRatecardCategories((prev) => ({
+      //     ...prev,
+      //     role: roleObj,
+      //   }));
+      // }
     } catch (err) {
       setRatecardCategoriesError("An unexpected error occurred");
     } finally {
@@ -106,3 +140,5 @@ export function useRatecardCategories() {
     ratecardCategoriesError,
   };
 }
+
+

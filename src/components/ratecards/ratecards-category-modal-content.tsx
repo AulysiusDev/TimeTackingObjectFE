@@ -27,7 +27,6 @@ const RatecardsCategoryModalContent: React.FC<
   const { ratecardCategory, ratecardCategories } = useTheme();
 
   const handleChange = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-    console.log(e);
     e.preventDefault();
     setNewRatecardCategory(e.target.value);
   }, []);
@@ -60,7 +59,7 @@ const RatecardsCategoryModalContent: React.FC<
         <h2 className="ratecards-category-modal__error">{errorMessage}</h2>
 
         <ul className="ratecards-category-modal__list">
-          {Object.keys(ratecardCategories[ratecardCategory]).map(
+          {Object.keys(ratecardCategories[ratecardCategory].value).map(
             (category: string, i) => (
               <li
                 key={i}

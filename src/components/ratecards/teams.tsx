@@ -18,40 +18,87 @@ const Teams: React.FC = () => {
     team: 8,
     client: 8,
   });
-
+console.log({ratecardCategories})
   const handleClickAdd = useCallback((category: string) => {
     setRatecardCategory(category);
     setShowRatecardCategoryModal(true);
   }, []);
 
   const handleSelect = useCallback((value: string, category: string) => {
-    setRatecardCategories((prev: RatecardCategories) => {
-      const newCategory = {
-        ...prev[category],
-        [value]: !prev[category]?.[value],
-      };
+    console.log({value})
+    console.log({category})
 
+
+    setRatecardCategories((prev: RatecardCategories) => {
+      // const newCategory = {
+      //   ...prev[category],
+      //   value: [
+      //     ...
+      //   ]
+      //     [value]:!prev[category][value]?.[value],
+        
+      // };
+      const newCategory = {
+        ...prev[category], // version
+        value: {
+          ...prev[category].value,
+          [value] : !prev[category].value[value]
+        }
+      };
+      console.log({newCategory})
       const otherCategory = category === "team" ? "client" : "team";
 
-      const shouldReset = Object.values(prev[otherCategory]).some(
+      const shouldReset = Object.values(prev[otherCategory].value).some(
         (selected) => selected
       );
       if (shouldReset) {
+        console.log({
+          ...prev,
+          [category]: newCategory,
+          [otherCategory]: {
+            ...prev[otherCategory],
+            value: Object.keys(prev[otherCategory].value).reduce(
+              (acc, key) => {
+                acc[key] = false;
+                return acc;
+              },
+              {}
+            ),
+          }
+        })
+        console.log({
+          ...prev,
+          [category]: newCategory,
+          [otherCategory]: {
+            ...prev[otherCategory],
+            value: Object.keys(prev[otherCategory].value).reduce(
+              (acc, key) => {
+                acc[key] = false;
+                return acc;
+              },
+              {}
+            ),
+          }
+        })
         return {
           ...prev,
           [category]: newCategory,
-          [otherCategory]: Object.keys(prev[otherCategory]).reduce(
-            (acc, key) => {
-              acc[key] = false;
-              return acc;
-            },
-            {}
-          ),
+          [otherCategory]: {
+            ...prev[otherCategory],
+            value: Object.keys(prev[otherCategory].value).reduce(
+              (acc, key) => {
+                acc[key] = false;
+                return acc;
+              },
+              {}
+            ),
+          }
         };
       }
       return {
         ...prev,
-        [category]: newCategory,
+        [category]: 
+         newCategory
       };
     });
   }, []);
@@ -61,9 +108,9 @@ const Teams: React.FC = () => {
       setShowMore((prev) => ({
         ...prev,
         [category]:
-          prev[category] === 8
-            ? Object.keys(ratecardCategories[category]).length
-            : 8,
+           prev[category] === 8
+              ? Object.keys(ratecardCategories[category].value).length
+              : 8,
       }));
     },
     [ratecardCategories]
@@ -71,7 +118,7 @@ const Teams: React.FC = () => {
 
   const handleClickAll = useCallback(
     (objKey: string) => {
-      const newObject = Object.keys(ratecardCategories[objKey]).reduce(
+      const newObject = Object.keys(ratecardCategories[objKey].value).reduce(
         (acc, key) => {
           acc[key] = true;
           return acc;
@@ -82,7 +129,7 @@ const Teams: React.FC = () => {
       if (objKey === "team") {
         otherKey = "client";
       }
-      const newOtherObject = Object.keys(ratecardCategories[otherKey]).reduce(
+      const newOtherObject = Object.keys(ratecardCategories[otherKey].value).reduce(
         (acc, key) => {
           acc[key] = false;
           return acc;
@@ -92,8 +139,14 @@ const Teams: React.FC = () => {
 
       setRatecardCategories((prev: RatecardCategories) => ({
         ...prev,
-        [objKey]: newObject,
-        [otherKey]: newOtherObject,
+        [objKey]: {
+          ...prev[objKey],
+          value: newObject
+        },
+        [otherKey]: {
+          ...prev[otherKey],
+          value: newOtherObject
+        },
       }));
     },
     [ratecardCategories]
@@ -114,7 +167,7 @@ const Teams: React.FC = () => {
             />
           </div>
           <ul className="teams__list">
-            {Object.entries(ratecardCategories.team)
+            {Object.entries(ratecardCategories.team.value)
               .slice(0, showMore.team)
               .map(([department, selected]) => (
                 <li
@@ -127,7 +180,7 @@ const Teams: React.FC = () => {
                 </li>
               ))}
           </ul>
-          {Object.keys(ratecardCategories.team).length > 8 ? (
+          {Object.keys(ratecardCategories.team.value).length > 8 ? (
             <div className="teams__showMore-cont">
               <Button
                 onClick={() => handleShowMore("team")}
@@ -152,7 +205,7 @@ const Teams: React.FC = () => {
             />
           </div>
           <ul className="teams__list">
-            {Object.entries(ratecardCategories.client)
+            {Object.entries(ratecardCategories.client.value)
               .slice(0, showMore.client)
               .map(([name, selected]) => (
                 <li
@@ -165,7 +218,7 @@ const Teams: React.FC = () => {
                 </li>
               ))}
           </ul>
-          {Object.keys(ratecardCategories.client).length > 8 ? (
+          {Object.keys(ratecardCategories.client.value).length > 8 ? (
             <div className="teams__showMore-cont">
               <Button
                 onClick={() => handleShowMore("client")}

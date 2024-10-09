@@ -14,6 +14,7 @@ const RatecardsCategoryModal: React.FC = () => {
     setShowRatecardCategoryModal,
     ratecardCategory,
     setRatecardCategories,
+    ratecardCategories
   } = useTheme();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -23,53 +24,89 @@ const RatecardsCategoryModal: React.FC = () => {
 
   const handleOnClose = useCallback(() => {
     setNewCategories([]);
+    setErrorMessage("")
     setNewRatecardCategory("");
     setShowRatecardCategoryModal(false);
     setDeleteCategories([]);
   }, []);
 
   const handleRatecardCategory = useCallback(async () => {
-    const storedCategories: Response<StorageResponse> =
+    let outdated = false
+    var storedCategories: Response<StorageResponse> =
       await monday.storage.getItem(ratecardCategory);
+      console.log({storedCategories})
     if (!storedCategories.data.success) {
       setErrorMessage(
         (storedCategories.data?.error as string) ||
           "Unknown error saving ratecard data"
       );
-    } else {
-      let categories: StorageResponse | string[] = safeParse(
-        storedCategories.data.value
-      );
-      if (Array.isArray(categories)) {
-        categories = [
-          ...categories.filter((cat) => !deleteCategories.includes(cat)),
-          ...newCategories,
-        ];
-      } else {
-        categories = [...newCategories];
+     
+    }else {
+      // No error storing
+      if(storedCategories.data.version !== ratecardCategories[ratecardCategory].version){
+        handleOutdatedVersion(storedCategories)
+     
+      }else{
+        handleUpdateData(storedCategories)
       }
+
+      
+      }
+  }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
+
+  const handleOutdatedVersion = async (storedCategories: Response<StorageResponse>) => {
+    setErrorMessage("This data has been updated please review the new data and try again.");
+    let categories: StorageResponse | string[] = safeParse(
+      storedCategories.data.value
+    );
+    if (!Array.isArray(categories)) {
+      categories = [];
+    }
+    setRatecardCategories((prev: RatecardCategories) => ({
+      ...prev,
+      [ratecardCategory]: {
+        value: categories.reduce((acc, category) => {
+          acc[category] = false;
+          return acc;
+        }, {}),
+        version: storedCategories.data.version
+      }
+    }));
+    setDeleteCategories([])
+  }
+
+  const handleUpdateData = async (storedCategories: Response<StorageResponse>) => {
+    let categories: StorageResponse | string[] = safeParse(
+      storedCategories.data.value
+    );
+    if (Array.isArray(categories)) {
+      categories = [
+        ...categories.filter((cat) => !deleteCategories.includes(cat)),
+        ...newCategories,
+      ];
+    } else {
+      categories = [...newCategories];
+    }
+
       const storeResponse = await monday.storage.setItem(
         ratecardCategory,
         JSON.stringify(categories)
       );
-      if (storeResponse.errorMessage) {
+      if (storeResponse?.errorMessage) {
         setErrorMessage(storeResponse.errorMessage);
-      } else {
-        console.log({ categories });
-        setRatecardCategories((prev: RatecardCategories) => ({
-          ...prev,
-          [ratecardCategory]: categories.reduce((acc, category) => {
+      }
+      setRatecardCategories((prev: RatecardCategories) => ({
+        ...prev,
+        [ratecardCategory]: {
+          value: categories.reduce((acc, category) => {
             acc[category] = false;
             return acc;
           }, {}),
-        }));
-      }
-      setShowRatecardCategoryModal(false);
-      setNewRatecardCategory("");
-      setNewCategories([]);
-      setDeleteCategories([]);
-    }
-  }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
+          version: storeResponse.data.version
+        }
+      }));
+   handleOnClose()
+  }
 
   return (
     <Modal
@@ -78,7 +115,6 @@ const RatecardsCategoryModal: React.FC = () => {
       title={`Manage ${ratecardCategory}s`}
       contentSpacing
       zIndex={111111}
-      unmountOnClose
     >
       <ModalContent>
         <RatecardsCategoryModalContent

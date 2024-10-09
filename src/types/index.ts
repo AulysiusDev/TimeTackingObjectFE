@@ -54,7 +54,10 @@ export interface RatecardCategories {
 }
 
 export interface RatecardCategory {
-  [key: string]: boolean;
+  [key: string]: {
+    value: string[],
+    version: string
+  };
 }
 
 export interface NewRatecard {

@@ -85,10 +85,15 @@ interface RatecardCategoriesObject {
   role: RatecardCategory[];
 }
 
-export const ratecardCategoriesObject: RatecardCategoriesObject = {
-  team: [],
-  client: [],
-  role: [],
+export const ratecardCategoriesObject = {
+  team: {
+    value: [],
+    version: ""
+  },
+  client: {value: [],
+    version: ""},
+  role: {value: [],
+    version: ""},
 };
 
 export const currencyOptions: DropdownOption[] = [
