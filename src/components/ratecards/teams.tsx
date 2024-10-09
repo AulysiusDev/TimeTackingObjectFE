@@ -162,7 +162,6 @@ console.log({ratecardCategories})
             </span>
             <Menu
               className="teams__add-icon clickable"
-              clickable
               onClick={() => handleClickAdd("team")}
             />
           </div>

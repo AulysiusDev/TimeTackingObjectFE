@@ -40,7 +40,7 @@ export function useRatecardCategories() {
         ...prev,
         [key]: {
          value: dataObj,
-         version: storedDataResponse.data.version
+         version: storedDataResponse.data?.version || null
         }
       }));
     }

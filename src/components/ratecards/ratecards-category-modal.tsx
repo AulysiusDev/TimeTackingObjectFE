@@ -31,82 +31,50 @@ const RatecardsCategoryModal: React.FC = () => {
   }, []);
 
   const handleRatecardCategory = useCallback(async () => {
-    let outdated = false
-    var storedCategories: Response<StorageResponse> =
+    // Get stringified array of existing categories - delete categories + new categories
+      const ratecardCategoryValue = JSON.stringify([ ...Object.keys(ratecardCategories[ratecardCategory].value).filter((cat) => !deleteCategories.includes(cat)), ...newCategories]);
+      let storeResponse: Response<StorageResponse>;
+      let categories : string[] = []
+      if(ratecardCategories[ratecardCategory]?.version){
+        const options = {previous_version: ratecardCategories[ratecardCategory]?.version};
+        storeResponse = await monday.storage.setItem(ratecardCategory, ratecardCategoryValue, options);
+      } else {
+        storeResponse = await monday.storage.setItem(ratecardCategory, ratecardCategoryValue);
+      }
+
+      // Get latest data whwther there is an error or not
+      const storedCategories: Response<StorageResponse> =
       await monday.storage.getItem(ratecardCategory);
-      console.log({storedCategories})
+
+      // If there is an error fetching data set error message
     if (!storedCategories.data.success) {
       setErrorMessage(
-        (storedCategories.data?.error as string) ||
-          "Unknown error saving ratecard data"
-      );
-     
-    }else {
-      // No error storing
-      if(storedCategories.data.version !== ratecardCategories[ratecardCategory].version){
-        handleOutdatedVersion(storedCategories)
-     
+          "Unknown error saving ratecard data")
+        }else{
+          // Set categories
+          categories = safeParse(storedCategories.data.value) || []
+      }
+      if (!storeResponse.data.success) {
+        // Error storing data
+        setErrorMessage(storeResponse.data.error.status === 409 ? "This data has been updated please review the new data and try again." : "Unknown error updating storage, please reload the app and try again.");
+        // Clear delete categories in case item has been deleted already
+        setDeleteCategories([])
       }else{
-        handleUpdateData(storedCategories)
+        handleOnClose()
       }
-
-      
-      }
-  }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
-
-  const handleOutdatedVersion = async (storedCategories: Response<StorageResponse>) => {
-    setErrorMessage("This data has been updated please review the new data and try again.");
-    let categories: StorageResponse | string[] = safeParse(
-      storedCategories.data.value
-    );
-    if (!Array.isArray(categories)) {
-      categories = [];
-    }
-    setRatecardCategories((prev: RatecardCategories) => ({
-      ...prev,
-      [ratecardCategory]: {
-        value: categories.reduce((acc, category) => {
-          acc[category] = false;
-          return acc;
-        }, {}),
-        version: storedCategories.data.version
-      }
-    }));
-    setDeleteCategories([])
-  }
-
-  const handleUpdateData = async (storedCategories: Response<StorageResponse>) => {
-    let categories: StorageResponse | string[] = safeParse(
-      storedCategories.data.value
-    );
-    if (Array.isArray(categories)) {
-      categories = [
-        ...categories.filter((cat) => !deleteCategories.includes(cat)),
-        ...newCategories,
-      ];
-    } else {
-      categories = [...newCategories];
-    }
-
-      const storeResponse = await monday.storage.setItem(
-        ratecardCategory,
-        JSON.stringify(categories)
-      );
-      if (storeResponse?.errorMessage) {
-        setErrorMessage(storeResponse.errorMessage);
-      }
+      // Update categories with latest data whether success for error
       setRatecardCategories((prev: RatecardCategories) => ({
         ...prev,
         [ratecardCategory]: {
-          value: categories.reduce((acc, category) => {
+          value: categories.length ? categories.reduce((acc, category) => {
             acc[category] = false;
             return acc;
-          }, {}),
-          version: storeResponse.data.version
+          }, {}) : {},
+          version: storedCategories.data?.version || null
         }
       }));
-   handleOnClose()
-  }
+
+  }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
 
   return (
     <Modal
