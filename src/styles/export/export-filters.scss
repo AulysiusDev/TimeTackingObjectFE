@@ -2,25 +2,63 @@
 
 .export-filters__container {
   @include flex-center($d: column);
-  gap: 50px;
+  position: fixed;
+  margin: 0 20px;
+  top: 10.5%;
+  left: 0.5%;
 }
 .export-filters__dropdowns-cont {
-  @include flex();
+  @include flex($d: column);
+  align-items: flex-start;
   gap: 20px;
+}
+.export-filters__dropdown{
+  width: 150px;
+  div {
+    div{
+      div{
+        font-size: 12.5px;
+      }
+    }
+  }
 }
 .export-filters__date-picker {
+
+}
+.export-filters__dialog-content-cont{
+  // margin: 120px 0  0 80px;
+  position: absolute;
+  left: 30px;
+  top: -20px;
+}
+.export-filters__date-button{
+  font-size: 12.5px;
+  width: 150px;
+  color: var(--secondary-text-color);
+  letter-spacing: -0.04em;
+}
+.export-filters__button-group{
+  button{
+    font-size: 10px; 
+ }
 }
 .export-filters__checkbox-cont {
-  @include flex();
+  @include flex($d: column);
+  gap: 10px;
+  label{
+    color: var(--primary-color);
+    font-size: 15px;
+  }
+}
+.export-filters__button-cont{
+  @include flex($d: column);
   gap: 20px;
-}
-.export-filters__options-cont {
-  @include flex();
-  align-items: flex-start;
-  gap: 80px;
-}
-.export-filters__button-cont {
-  @include flex-center();
   width: 100%;
-  gap: 50px;
+  margin-top: 10px;
+}
+.export-filters__divider{
+  height: 400px;
+  position: absolute;
+  right: -20%;
+  top: 0%;
 }

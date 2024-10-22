@@ -32,6 +32,7 @@ const RatecardsCategoryModalContent: React.FC<
   }, []);
 
   const handleClickAdd = useCallback(() => {
+    if(!newRatecardCategory) return 
     setNewCategories((prev) => [...prev, newRatecardCategory]);
     setNewRatecardCategory("");
   }, [newRatecardCategory]);

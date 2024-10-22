@@ -82,3 +82,22 @@ export interface StoredRatecard {
   updatedBy: number;
   updatedAt: string;
 }
+
+export interface LogEntry {
+  id: number;
+  username: string;
+  userId: string;
+  itemId: string;
+  itemName: string;
+  boardId: string;
+  groupId: string;
+  workspaceId: string;
+  startDate: string;  
+  total: number;      
+  billable: number;  
+  rate: number;       
+  currency: string;   
+  note: string;       
+  createdAt: string; 
+  updatedAt: string;  
+}

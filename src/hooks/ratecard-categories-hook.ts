@@ -55,73 +55,6 @@ export function useRatecardCategories() {
       for(const key of keys){
         await processStoredData(key)
       }
-      // const storedTeamsResponse: Response<StorageResponse> =
-      //   await monday.storage.getItem("team");
-      // const storedClientsResponse: Response<StorageResponse> =
-      //   await monday.storage.getItem("client");
-      // const storedRolesResponse: Response<StorageResponse> =
-      //   await monday.storage.getItem("role");
-      // // Process teams
-      // if (!storedTeamsResponse.data.success) {
-      //   setRatecardCategoriesError(
-      //     storedTeamsResponse.data.error || "Uknown error fetching stored data"
-      //   );
-      // } else {
-      //   const parsedTeamsData = safeParse(storedTeamsResponse.data.value);
-      //   const teamsData = Array.isArray(parsedTeamsData) ? parsedTeamsData : [];
-
-      //   const teamsObj = teamsData.reduce((acc, team) => {
-      //     acc[team] = false;
-      //     return acc;
-      //   }, {});
-
-      //   setRatecardCategories((prev) => ({
-      //     ...prev,
-      //     team: {
-      //      value: teamsObj,
-      //      version: storedTeamsResponse.data.version
-      //     }
-      //   }));
-      // }
-
-      // // Process clients
-      // if (!storedClientsResponse.data.success) {
-      //   setRatecardCategoriesError(
-      //     storedClientsResponse.data.error ||
-      //       "Uknown error fetching stored data"
-      //   );
-      // } else {
-      //   const parsedClientsData = safeParse(storedClientsResponse.data.value);
-      //   const clientsData = Array.isArray(parsedClientsData)
-      //     ? parsedClientsData
-      //     : [];
-      //   const clientObj = clientsData.reduce((acc, client) => {
-      //     acc[client] = false;
-      //     return acc;
-      //   }, {});
-      //   setRatecardCategories((prev) => ({
-      //     ...prev,
-      //     client: clientObj,
-      //   }));
-      // }
-
-      // // Process roles
-      // if (!storedRolesResponse.data.success) {
-      //   setRatecardCategoriesError(
-      //     storedRolesResponse.data.error || "Uknown error fetching stored data"
-      //   );
-      // } else {
-      //   const parsedRolesData = safeParse(storedRolesResponse.data.value);
-      //   const rolesData = Array.isArray(parsedRolesData) ? parsedRolesData : [];
-      //   const roleObj = rolesData.reduce((acc, role) => {
-      //     acc[role] = false;
-      //     return acc;
-      //   }, {});
-      //   setRatecardCategories((prev) => ({
-      //     ...prev,
-      //     role: roleObj,
-      //   }));
-      // }
     } catch (err) {
       setRatecardCategoriesError("An unexpected error occurred");
     } finally {
@@ -138,6 +71,7 @@ export function useRatecardCategories() {
     setRatecardCategories,
     ratecardCategoriesLoading,
     ratecardCategoriesError,
+    processStoredData
   };
 }
 

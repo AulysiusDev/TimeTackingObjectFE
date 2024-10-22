@@ -18,26 +18,14 @@ const Teams: React.FC = () => {
     team: 8,
     client: 8,
   });
-console.log({ratecardCategories})
   const handleClickAdd = useCallback((category: string) => {
     setRatecardCategory(category);
     setShowRatecardCategoryModal(true);
   }, []);
 
   const handleSelect = useCallback((value: string, category: string) => {
-    console.log({value})
-    console.log({category})
-
 
     setRatecardCategories((prev: RatecardCategories) => {
-      // const newCategory = {
-      //   ...prev[category],
-      //   value: [
-      //     ...
-      //   ]
-      //     [value]:!prev[category][value]?.[value],
-        
-      // };
       const newCategory = {
         ...prev[category], // version
         value: {
@@ -52,34 +40,6 @@ console.log({ratecardCategories})
         (selected) => selected
       );
       if (shouldReset) {
-        console.log({
-          ...prev,
-          [category]: newCategory,
-          [otherCategory]: {
-            ...prev[otherCategory],
-            value: Object.keys(prev[otherCategory].value).reduce(
-              (acc, key) => {
-                acc[key] = false;
-                return acc;
-              },
-              {}
-            ),
-          }
-        })
-        console.log({
-          ...prev,
-          [category]: newCategory,
-          [otherCategory]: {
-            ...prev[otherCategory],
-            value: Object.keys(prev[otherCategory].value).reduce(
-              (acc, key) => {
-                acc[key] = false;
-                return acc;
-              },
-              {}
-            ),
-          }
-        })
         return {
           ...prev,
           [category]: newCategory,
@@ -199,7 +159,6 @@ console.log({ratecardCategories})
             </span>
             <Menu
               className="teams__add-icon"
-              clickable
               onClick={() => handleClickAdd("client")}
             />
           </div>

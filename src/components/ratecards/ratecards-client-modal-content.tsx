@@ -27,7 +27,6 @@ const RatecardsClientModalContent: React.FC = () => {
       selected: e
     }))
   },[])
-console.log({clientDetails})
   return (
     <section className="ratecards-client-modal-content__container">
       <article className="ratecards-client-modal-content__client-ratecard-cont">

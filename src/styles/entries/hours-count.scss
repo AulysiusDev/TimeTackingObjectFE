@@ -2,14 +2,15 @@
 
 .hours-count__container {
   @include flex($d: column);
-  gap: 10px;
+  align-items: flex-start;
+  gap: 5px;
 }
 .hours-count__title {
   font-weight: 600;
-  font-size: 20px;
+  font-size: 10px;
   color: var(--primary-color);
 }
 .hours-count__text {
-  font-size: 25px;
+  font-size: 15px;
   color: var(--primary-text-color);
 }

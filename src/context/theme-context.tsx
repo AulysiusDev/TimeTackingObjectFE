@@ -36,6 +36,7 @@ export default function ThemeContextProvider({ children }) {
     setRatecardCategories,
     ratecardCategoriesLoading,
     ratecardCategoriesError,
+    processStoredData
   } = useRatecardCategories();
 
   const { storedRatecards, setStoredRatecards } = useStoredRatecards();
@@ -65,7 +66,7 @@ export default function ThemeContextProvider({ children }) {
         setShowManageRatecardsModal,
         manageRatecardCategory,
         setManageRatecardCategory,
-        clientDetails, setClientDetails
+        clientDetails, setClientDetails, processStoredData
       }}
     >
       {children}

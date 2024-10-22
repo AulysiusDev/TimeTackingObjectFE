@@ -14,7 +14,8 @@ const RatecardsCategoryModal: React.FC = () => {
     setShowRatecardCategoryModal,
     ratecardCategory,
     setRatecardCategories,
-    ratecardCategories
+    ratecardCategories,
+    processStoredData
   } = useTheme();
   const [errorMessage, setErrorMessage] = useState("");
 
@@ -30,11 +31,14 @@ const RatecardsCategoryModal: React.FC = () => {
     setDeleteCategories([]);
   }, []);
 
-  const handleRatecardCategory = useCallback(async () => {
+console.log({ratecardCategories})
+
+  const handleSaveRatecardCategory = useCallback(async () => {
     // Get stringified array of existing categories - delete categories + new categories
       const ratecardCategoryValue = JSON.stringify([ ...Object.keys(ratecardCategories[ratecardCategory].value).filter((cat) => !deleteCategories.includes(cat)), ...newCategories]);
       let storeResponse: Response<StorageResponse>;
       let categories : string[] = []
+
       if(ratecardCategories[ratecardCategory]?.version){
         const options = {previous_version: ratecardCategories[ratecardCategory]?.version};
         storeResponse = await monday.storage.setItem(ratecardCategory, ratecardCategoryValue, options);
@@ -42,18 +46,8 @@ const RatecardsCategoryModal: React.FC = () => {
         storeResponse = await monday.storage.setItem(ratecardCategory, ratecardCategoryValue);
       }
 
-      // Get latest data whwther there is an error or not
-      const storedCategories: Response<StorageResponse> =
-      await monday.storage.getItem(ratecardCategory);
-
-      // If there is an error fetching data set error message
-    if (!storedCategories.data.success) {
-      setErrorMessage(
-          "Unknown error saving ratecard data")
-        }else{
-          // Set categories
-          categories = safeParse(storedCategories.data.value) || []
-      }
+      processStoredData(ratecardCategory)
+      
       if (!storeResponse.data.success) {
         // Error storing data
         setErrorMessage(storeResponse.data.error.status === 409 ? "This data has been updated please review the new data and try again." : "Unknown error updating storage, please reload the app and try again.");
@@ -62,20 +56,9 @@ const RatecardsCategoryModal: React.FC = () => {
       }else{
         handleOnClose()
       }
-      // Update categories with latest data whether success for error
-      setRatecardCategories((prev: RatecardCategories) => ({
-        ...prev,
-        [ratecardCategory]: {
-          value: categories.length ? categories.reduce((acc, category) => {
-            acc[category] = false;
-            return acc;
-          }, {}) : {},
-          version: storedCategories.data?.version || null
-        }
-      }));
 
   }, [newRatecardCategory, ratecardCategory, deleteCategories, newCategories]);
-
+console.log({newCategories})
   return (
     <Modal
       show={showRatecardCategoryModal}
@@ -96,7 +79,7 @@ const RatecardsCategoryModal: React.FC = () => {
         />
       </ModalContent>
       <ModalFooterButtons
-        onPrimaryButtonClick={handleRatecardCategory}
+        onPrimaryButtonClick={handleSaveRatecardCategory}
         onSecondaryButtonClick={handleOnClose}
         primaryButtonText={`Save`}
         secondaryButtonText="Cancel"

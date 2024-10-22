@@ -2,9 +2,8 @@
 
 .total-hours__container {
   @include flex();
-  width: 100%;
   justify-content: flex-end;
-  gap: 60px;
+  gap: 30px;
   margin: 0;
 }
 .total-hours__hours-cont,

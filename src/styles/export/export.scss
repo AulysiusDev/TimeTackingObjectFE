@@ -1,33 +1,26 @@
 @import "../variables.scss";
-
-.export__container,
-.export__bottom-cont,
-.export__filters-cont {
-  @include flex($d: column);
-}
-.export__top-cont,
-.export__hours-cont,
-.export__generated-cont,
-.export__table-cont {
+.export__container{
   @include flex();
-}
-
-.export__container {
-  width: 100%;
-  gap: 20px;
-  padding-top: 40px;
-}
-.export__top-cont {
   align-items: flex-start;
-  justify-content: flex-start;
   width: 100%;
+  gap: 40px;
+}
+.export__side-cont{
+  @include flex($d: column);
+  align-items: flex-start;
+  position: relative;
+  min-width: 200px;
+  height: 100%;
+  flex-basis: 12.5%;
+  margin-top: 10px;
+}
+.export__content-cont{
+  @include flex($d: column);
+  align-items: flex-start;
+  flex-basis: 17.5%;
 }
 .export__hours-cont {
   width: 100%;
-  margin-top: 50px;
-}
-.export__bottom-cont {
-  margin-top: 20px;
-  width: 100%;
-  gap: 40px;
+  margin: 10px 20px 20px 2.5px ;
+  @include flex();
 }
